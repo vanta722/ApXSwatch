@@ -3,19 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>APX Integrated Bracelet | Early Access</title>
-  <meta name="description" content="A cinematic early-access launch for a premium no-logo integrated bracelet upgrade concept." />
+  <title>Royal Pop Bracelet Upgrade | Early Access</title>
+  <meta name="description" content="A bold colorful early-access launch for premium no-logo integrated bracelet upgrades inspired by collectible pop-watch energy." />
   <style>
     :root {
-      --bg:#030303;
-      --ink:#f7f2e8;
-      --muted:#a89f90;
-      --soft:#171511;
-      --line:rgba(255,255,255,.14);
-      --gold:#d7b46a;
-      --gold2:#f3d68a;
+      --bg:#05040a;
+      --ink:#fff8f0;
+      --muted:#c9bed0;
+      --soft:#171226;
+      --line:rgba(255,255,255,.18);
+      --gold:#ffd166;
+      --gold2:#fff0a6;
+      --pink:#ff4fd8;
+      --blue:#33d6ff;
+      --green:#52ff9c;
+      --orange:#ff8a2a;
+      --violet:#8a5cff;
       --shadow:rgba(0,0,0,.65);
-      --steel:#c9c7bf;
+      --steel:#f1eee6;
       --black:#070707;
     }
     *{box-sizing:border-box}
@@ -25,9 +30,11 @@
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(circle at 48% 4%, rgba(215,180,106,.16), transparent 32%),
-        radial-gradient(circle at 80% 24%, rgba(255,255,255,.08), transparent 28%),
-        linear-gradient(180deg,#050505,#020202 45%,#090806);
+        radial-gradient(circle at 18% 10%, rgba(255,79,216,.30), transparent 30%),
+        radial-gradient(circle at 76% 12%, rgba(51,214,255,.28), transparent 32%),
+        radial-gradient(circle at 52% 54%, rgba(82,255,156,.13), transparent 35%),
+        radial-gradient(circle at 88% 72%, rgba(255,138,42,.18), transparent 32%),
+        linear-gradient(180deg,#070412,#03030a 45%,#090510);
       overflow-x:hidden;
     }
     body:before{
@@ -41,12 +48,12 @@
     .brand{letter-spacing:.22em;text-transform:uppercase;font-weight:900;font-size:12px;color:var(--gold2)}
     .navlinks{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
     .pill{border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--muted);font-size:13px;background:rgba(255,255,255,.035);backdrop-filter:blur(12px)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;padding:15px 22px;text-decoration:none;font-weight:900;letter-spacing:.01em;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#120e05;box-shadow:0 14px 40px rgba(215,180,106,.23);cursor:pointer}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;padding:15px 22px;text-decoration:none;font-weight:900;letter-spacing:.01em;background:linear-gradient(135deg,var(--blue),var(--pink) 45%,var(--gold));color:#09040b;box-shadow:0 14px 44px rgba(255,79,216,.30),0 0 38px rgba(51,214,255,.18);cursor:pointer}
     .btn.dark{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line);box-shadow:none}
     .hero{min-height:82vh;display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:center;padding:22px 0 60px}
     .eyebrow{color:var(--gold2);text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:900;margin-bottom:18px}
     h1{font-size:clamp(48px,8.8vw,118px);line-height:.82;letter-spacing:-.085em;margin:0 0 24px;max-width:780px;text-wrap:balance}
-    .gold{background:linear-gradient(135deg,#fff4c7,#d7b46a 55%,#87692e);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .gold{background:linear-gradient(135deg,var(--blue),var(--pink) 38%,var(--gold2) 70%,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
     .sub{font-size:clamp(18px,2vw,24px);line-height:1.35;color:var(--muted);max-width:660px;margin:0 0 30px}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 24px}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:680px;margin-top:30px}
@@ -54,17 +61,19 @@
     .stat b{display:block;font-size:20px;color:var(--ink)}
     .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
     .stage{min-height:620px;border:1px solid var(--line);border-radius:38px;background:
-      radial-gradient(circle at 50% 42%, rgba(215,180,106,.2), transparent 28%),
-      linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+      radial-gradient(circle at 26% 22%, rgba(255,79,216,.30), transparent 28%),
+      radial-gradient(circle at 75% 28%, rgba(51,214,255,.28), transparent 30%),
+      radial-gradient(circle at 50% 78%, rgba(82,255,156,.18), transparent 32%),
+      linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.025));
       position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 120px var(--shadow)}
-    .stage:before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 120deg,transparent,rgba(255,255,255,.13),transparent,rgba(215,180,106,.16),transparent);animation:spin 18s linear infinite;opacity:.65}
+    .stage:before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 120deg,transparent,rgba(255,79,216,.28),rgba(51,214,255,.22),transparent,rgba(255,209,102,.28),rgba(82,255,156,.20),transparent);animation:spin 18s linear infinite;opacity:.65}
     .stage:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,transparent 0 26%,rgba(0,0,0,.65) 63%,rgba(0,0,0,.92));}
     @keyframes spin{to{transform:rotate(360deg)}}
     .watch{width:min(420px,72vw);aspect-ratio:1;position:relative;z-index:2;filter:drop-shadow(0 42px 45px rgba(0,0,0,.75));animation:float 5.2s ease-in-out infinite}
     @keyframes float{50%{transform:translateY(-14px) rotate(-2deg)}}
-    .case{position:absolute;inset:20%;background:linear-gradient(145deg,#e5e1d8,#79776f 38%,#faf7ef 52%,#5d5b55 80%);clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);box-shadow:inset 0 0 0 12px rgba(0,0,0,.22), inset 0 0 40px rgba(255,255,255,.25)}
+    .case{position:absolute;inset:20%;background:linear-gradient(145deg,#ffffff,#ff4fd8 24%,#33d6ff 48%,#ffd166 68%,#52ff9c 88%);clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);box-shadow:inset 0 0 0 12px rgba(0,0,0,.22), inset 0 0 40px rgba(255,255,255,.25)}
     .dial{position:absolute;inset:31%;border-radius:50%;background:radial-gradient(circle,#242424,#070707 62%,#000);border:8px solid rgba(255,255,255,.18);box-shadow:inset 0 0 24px #000;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;letter-spacing:.16em;font-size:11px;color:var(--gold2)}
-    .braceletTop,.braceletBottom{position:absolute;left:38%;width:24%;height:31%;background:repeating-linear-gradient(180deg,#dad8cf 0 20px,#aaa79e 20px 34px,#f4f1e8 34px 42px);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);box-shadow:inset 9px 0 14px rgba(255,255,255,.26),inset -9px 0 18px rgba(0,0,0,.28)}
+    .braceletTop,.braceletBottom{position:absolute;left:38%;width:24%;height:31%;background:repeating-linear-gradient(180deg,#fff 0 14px,#33d6ff 14px 24px,#ff4fd8 24px 34px,#ffd166 34px 44px,#52ff9c 44px 54px);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);box-shadow:inset 9px 0 14px rgba(255,255,255,.26),inset -9px 0 18px rgba(0,0,0,.28)}
     .braceletTop{top:-5%;transform:perspective(400px) rotateX(10deg)}
     .braceletBottom{bottom:-5%;transform:rotate(180deg)}
     .label{position:absolute;z-index:3;bottom:24px;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.16em}
@@ -79,7 +88,7 @@
     .finish{min-height:280px;border-radius:30px;border:1px solid var(--line);position:relative;overflow:hidden;background:#111;box-shadow:0 30px 80px rgba(0,0,0,.32)}
     .finish:before{content:"";position:absolute;inset:26px 42px;background:linear-gradient(145deg,var(--a),var(--b));clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);box-shadow:inset 0 0 0 10px rgba(0,0,0,.18),0 28px 48px rgba(0,0,0,.38)}
     .finish span{position:absolute;left:18px;bottom:18px;font-weight:900}.finish small{position:absolute;left:18px;bottom:42px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
-    .steel{--a:#fbf8ef;--b:#74716a}.black{--a:#2a2a2a;--b:#000}.white{--a:#fff;--b:#bcb7ac}.goldtone{--a:#ffe29b;--b:#9d7125}
+    .steel{--a:#fbf8ef;--b:#74716a}.black{--a:#1f1f2b;--b:#000}.white{--a:#fff;--b:#e8e1ff}.goldtone{--a:#ffe29b;--b:#9d7125}.pinkpop{--a:#ff8bed;--b:#b70084}.bluepop{--a:#83ecff;--b:#006ee6}.greenpop{--a:#8bffbd;--b:#00a85b}.orangepop{--a:#ffc05f;--b:#ff4d00}
     .drop{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
     .big{padding:34px}.big p{font-size:18px;color:var(--muted)}
     form{display:grid;gap:12px}.field{display:grid;gap:7px}label{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}input,select,textarea{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.38);color:var(--ink);border-radius:16px;padding:15px;font-size:16px;outline:none}textarea{resize:vertical}.fine{font-size:12px;color:#81796d;line-height:1.45}
@@ -91,7 +100,7 @@
 <body>
   <main class="shell">
     <nav class="nav">
-      <div class="brand">APX / ModBand Atelier</div>
+      <div class="brand">Royal Pop Mods</div>
       <div class="navlinks">
         <a class="pill" href="#finishes">Finishes</a>
         <a class="pill" href="#checklist">$5 Checklist</a>
@@ -101,15 +110,15 @@
 
     <section class="hero">
       <div>
-        <div class="eyebrow">Early access // limited concept drop</div>
-        <h1>The bracelet that makes the hype watch feel <span class="gold">untouchable.</span></h1>
-        <p class="sub">A cinematic, no-logo integrated bracelet concept built for collectors who want the luxury sport-watch feel — steel, ceramic-look, sharp geometry, real wrist presence.</p>
+        <div class="eyebrow">Early access // color-first collector drop</div>
+        <h1>Turn the pop watch into a <span class="gold">wrist trophy.</span></h1>
+        <p class="sub">Bold no-logo integrated bracelet concepts for collectors who want the Royal Pop energy: candy color, luxury geometry, real wrist presence, and first-batch exclusivity.</p>
         <div class="cta">
           <a class="btn" href="#reserve">Get Early Access</a>
           <a class="btn dark" href="#finishes">Preview the Finishes</a>
         </div>
         <div class="stats">
-          <div class="stat"><b>316L</b><span>Steel target</span></div>
+          <div class="stat"><b>8 Colors</b><span>Pop palette</span></div>
           <div class="stat"><b>No Logos</b><span>Clean aftermarket</span></div>
           <div class="stat"><b>First Batch</b><span>Demand decides</span></div>
         </div>
@@ -118,7 +127,7 @@
         <div class="watch">
           <div class="braceletTop"></div>
           <div class="case"></div>
-          <div class="dial">APX<br/>CONCEPT</div>
+          <div class="dial">POP<br/>MOD</div>
           <div class="braceletBottom"></div>
         </div>
         <div class="label"><span>Integrated bracelet concept</span><span>CAD renders coming soon</span></div>
@@ -127,8 +136,8 @@
 
     <section>
       <div class="sectionHead">
-        <h2>Not rubber. Not cheap. A real upgrade.</h2>
-        <p class="lead">The concept is built around the feeling people actually want: weight, shine, sharp edges, brushed surfaces, and a bracelet that turns a playful drop into a statement piece.</p>
+        <h2>Color loud. Finish clean. Bracelet real.</h2>
+        <p class="lead">The collection should feel playful and expensive at the same time: bold colors, sharp integrated links, polished edges, and a bracelet that turns the drop into a full outfit piece.</p>
       </div>
       <div class="grid">
         <div class="card"><h3>Luxury sport silhouette</h3><p>Angular integrated geometry with a premium bracelet presence inspired by elite sport-watch design language.</p></div>
@@ -139,14 +148,18 @@
 
     <section id="finishes">
       <div class="sectionHead">
-        <h2>Choose the first finish.</h2>
-        <p class="lead">These are the first styles we’re testing before samples: steel, black ceramic-look, white ceramic-look, and gold PVD.</p>
+        <h2>Choose the first colorway.</h2>
+        <p class="lead">These are the first looks we’re testing before samples: classic metal plus bold Royal Pop-style colorways built to match the energy of the collection.</p>
       </div>
       <div class="showcase">
-        <div class="finish steel"><small>Finish 01</small><span>Brushed Steel</span></div>
-        <div class="finish black"><small>Finish 02</small><span>Black Ceramic-Look</span></div>
-        <div class="finish white"><small>Finish 03</small><span>White Ceramic-Look</span></div>
-        <div class="finish goldtone"><small>Finish 04</small><span>Gold PVD</span></div>
+        <div class="finish pinkpop"><small>Color 01</small><span>Pop Pink</span></div>
+        <div class="finish bluepop"><small>Color 02</small><span>Electric Blue</span></div>
+        <div class="finish greenpop"><small>Color 03</small><span>Acid Green</span></div>
+        <div class="finish orangepop"><small>Color 04</small><span>Solar Orange</span></div>
+        <div class="finish steel"><small>Color 05</small><span>Brushed Steel</span></div>
+        <div class="finish black"><small>Color 06</small><span>Gloss Black</span></div>
+        <div class="finish white"><small>Color 07</small><span>Polar White</span></div>
+        <div class="finish goldtone"><small>Color 08</small><span>Gold Pop</span></div>
       </div>
     </section>
 
@@ -174,16 +187,16 @@
         <input type="hidden" name="form-name" value="early-access" />
         <div class="field"><label>Name</label><input name="name" placeholder="Your name" required /></div>
         <div class="field"><label>Email or phone</label><input name="contact" placeholder="Email or phone" required /></div>
-        <div class="field"><label>Which finish would you preorder?</label><select name="style" required><option value="">Select one</option><option>Silver 316L stainless steel</option><option>Black ceramic-look</option><option>White ceramic-look</option><option>Gold/Rose PVD steel</option><option>Two-tone</option></select></div>
+        <div class="field"><label>Which colorway would you preorder?</label><select name="style" required><option value="">Select one</option><option>Pop Pink</option><option>Electric Blue</option><option>Acid Green</option><option>Solar Orange</option><option>Polar White</option><option>Gloss Black</option><option>Brushed Steel</option><option>Gold Pop</option><option>Two-tone / mixed color</option></select></div>
         <div class="field"><label>Comfortable preorder price?</label><select name="price" required><option value="">Select one</option><option>$79-$99</option><option>$100-$149</option><option>$150-$199</option><option>$200+</option></select></div>
-        <div class="field"><label>Notes</label><textarea name="notes" rows="4" placeholder="Tell us the finish, watch, or detail that would make you buy."></textarea></div>
+        <div class="field"><label>Notes</label><textarea name="notes" rows="4" placeholder="Tell us the color, finish, or detail that would make you buy immediately."></textarea></div>
         <button class="btn" type="submit">Join early access</button>
         <p class="fine">Independent aftermarket accessory concept. Not affiliated with, endorsed by, or sponsored by Audemars Piguet, Swatch, or related brands. Names, if referenced elsewhere, are used only for compatibility context.</p>
       </form>
     </section>
 
     <footer>
-      APX / ModBand Atelier is an independent concept launch. Final fitment, materials, pricing, and availability depend on sample testing and production validation.
+      Royal Pop Mods is an independent concept launch. Final fitment, materials, pricing, and availability depend on sample testing and production validation.
     </footer>
   </main>
 </body>

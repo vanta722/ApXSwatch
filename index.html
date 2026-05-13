@@ -113,6 +113,25 @@
 
     @media(max-width:900px){.hero,.drop{grid-template-columns:1fr}.stage{min-height:520px}.grid,.showcase{grid-template-columns:1fr 1fr}.sectionHead{display:block}.lead{margin-top:14px}.stats{grid-template-columns:1fr}}
     @media(max-width:560px){.showcase,.grid{grid-template-columns:1fr}.nav{align-items:flex-start}.navlinks{justify-content:flex-end}.stage{min-height:430px;border-radius:28px}.label{display:block}.shell{padding-left:16px;padding-right:16px}}
+
+    @media(max-width:560px){
+      .shell{padding-top:calc(18px + env(safe-area-inset-top));padding-left:16px;padding-right:16px}
+      .ticker{margin-top:8px;margin-bottom:22px}
+      .hero{padding-top:8px;min-height:auto;gap:24px}
+      h1{font-size:clamp(42px,15vw,64px);line-height:.88;letter-spacing:-.065em;margin-top:0}
+      h2{font-size:clamp(34px,12vw,48px);line-height:.95;letter-spacing:-.05em}
+      .eyebrow{font-size:10px;line-height:1.4;margin-bottom:14px}
+      .sub{font-size:17px}
+      .showcase,.grid,.renderGrid{grid-template-columns:1fr}
+      .nav{align-items:flex-start;gap:12px;flex-direction:column}
+      .navlinks{justify-content:flex-start}
+      .stage{min-height:430px;border-radius:28px}
+      .glassRail{position:relative;top:auto;left:auto;right:auto;margin:14px;z-index:5;flex-wrap:wrap}
+      .label{display:block}
+      .countdown{grid-template-columns:repeat(2,1fr)}
+      .renderCard{border-radius:24px}
+    }
+
   </style>
 </head>
 <body>

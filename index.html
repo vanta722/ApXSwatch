@@ -114,6 +114,11 @@
 
 
 
+
+    .loader{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(255,79,216,.24),transparent 34%),radial-gradient(circle at 62% 62%,rgba(51,214,255,.18),transparent 35%),#03030a;animation:loaderOut .9s ease forwards;animation-delay:1.9s}.loaderInner{text-align:center}.loaderMark{font-size:clamp(34px,8vw,74px);line-height:.85;font-weight:950;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(135deg,var(--blue),var(--pink),var(--gold2),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 34px rgba(255,79,216,.28));animation:markIn 1.2s ease both}.loaderLine{width:min(420px,72vw);height:2px;margin:26px auto 0;background:linear-gradient(90deg,transparent,var(--pink),var(--blue),var(--gold),transparent);transform-origin:left;animation:lineGrow 1.4s ease both}.loaderSub{margin-top:18px;color:var(--muted);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:900}@keyframes markIn{from{opacity:0;transform:translateY(20px) scale(.96);filter:blur(8px)}to{opacity:1;transform:none;filter:drop-shadow(0 0 34px rgba(255,79,216,.28))}}@keyframes lineGrow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}@keyframes loaderOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+    .carouselControls{position:absolute;z-index:7;left:22px;right:22px;top:22px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}.carBtn{pointer-events:auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.36);backdrop-filter:blur(14px);color:#fff;font-size:24px;display:grid;place-items:center;cursor:pointer;transition:.22s transform,.22s background}.carBtn:hover{transform:scale(1.08);background:rgba(255,255,255,.12)}.colorStrip{position:absolute;z-index:6;left:50%;bottom:82px;transform:translateX(-50%);display:flex;gap:9px;padding:9px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(0,0,0,.34);backdrop-filter:blur(15px)}.dotChoice{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.45);cursor:pointer;opacity:.72;transition:.2s transform,.2s opacity}.dotChoice.active{opacity:1;transform:scale(1.2);box-shadow:0 0 0 4px rgba(255,255,255,.10),0 0 24px currentColor}.premiumStory{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:20px}.storyCard{border:1px solid var(--line);border-radius:24px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));position:relative;overflow:hidden}.storyCard:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,.10),transparent);transform:translateX(-120%);animation:sheen 5s ease-in-out infinite}.storyCard b{display:block;font-size:24px;margin-bottom:6px}.storyCard span{color:var(--muted);font-size:14px}@keyframes sheen{45%,100%{transform:translateX(120%)}}
+    .modalPreview{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;margin:4px 0 18px;padding:12px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045)}.modalPreview img{width:120px;height:120px;object-fit:cover;border-radius:18px}.modalPreview b{display:block;font-size:22px}.modalPreview span{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+
     .accessDock{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin:28px 0 0;max-width:880px}.accessCard{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.20);border-radius:26px;padding:20px;background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.035));box-shadow:0 24px 80px rgba(0,0,0,.30);text-decoration:none;transition:.25s transform,.25s box-shadow,.25s border-color}.accessCard:before{content:"";position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(255,79,216,.40),rgba(51,214,255,.30),rgba(255,209,102,.34));opacity:.18;z-index:-1}.accessCard:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.42);box-shadow:0 28px 90px rgba(255,79,216,.18),0 0 55px rgba(51,214,255,.14)}.accessCard small{display:block;color:var(--gold2);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}.accessCard b{display:block;font-size:clamp(22px,4vw,34px);line-height:.95;letter-spacing:-.04em}.accessCard span{display:block;color:var(--muted);font-size:14px;margin-top:10px;max-width:420px}.accessArrow{position:absolute;right:18px;top:18px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);border:1px solid var(--line);font-size:20px}.quickActions{display:grid;gap:14px}.miniAction{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:16px 18px;background:rgba(0,0,0,.25);backdrop-filter:blur(14px);text-decoration:none;transition:.22s transform,.22s background}.miniAction:hover{transform:translateX(5px);background:rgba(255,255,255,.08)}.miniAction strong{display:block;font-size:16px}.miniAction em{display:block;color:var(--muted);font-style:normal;font-size:12px;margin-top:3px}.miniAction i{font-style:normal;color:var(--gold2);font-size:18px}.pulseRing{position:absolute;right:-42px;bottom:-42px;width:145px;height:145px;border-radius:50%;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 55px rgba(255,79,216,.22);animation:pulse 3.4s ease-in-out infinite}
 
     .modalOverlay{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(18px)}.modalOverlay.open{display:flex}.modal{width:min(720px,100%);max-height:90vh;overflow:auto;border:1px solid rgba(255,255,255,.22);border-radius:30px;background:radial-gradient(circle at 18% 0,rgba(255,79,216,.20),transparent 34%),radial-gradient(circle at 82% 12%,rgba(51,214,255,.18),transparent 34%),linear-gradient(180deg,rgba(18,12,30,.98),rgba(5,4,10,.98));box-shadow:0 40px 140px rgba(0,0,0,.78);padding:24px}.modalTop{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:18px}.modalTop h2{font-size:clamp(32px,7vw,54px)}.closeModal{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font-size:24px;cursor:pointer;flex:0 0 auto}.modal .lead{font-size:16px}.modal form{margin-top:18px}.bodyLock{overflow:hidden}
@@ -149,12 +154,16 @@
       .productViewer{min-height:430px;border-radius:28px}
       .controlPanel{border-radius:28px;padding:22px}
       .choiceGrid{grid-template-columns:1fr}
+      .premiumStory{grid-template-columns:1fr}
+      .modalPreview{grid-template-columns:86px 1fr}.modalPreview img{width:86px;height:86px}
+      .colorStrip{bottom:72px}
       .hotspot:after{display:none}
     }
 
   </style>
 </head>
 <body>
+  <div class="loader"><div class="loaderInner"><div class="loaderMark">Royal<br>Pop</div><div class="loaderLine"></div><div class="loaderSub">First circle loading</div></div></div>
   <div class="noise"></div><div class="spotlight" id="spotlight"></div>
   <main class="shell">
     <nav class="nav">
@@ -275,6 +284,7 @@
           </div>
           <button class="closeModal" type="button" aria-label="Close modal">×</button>
         </div>
+        <div class="modalPreview"><img id="modalRender" src="/renders/royal-pop-popmix.png" alt="Selected colorway preview"><div><b id="modalColor">Yellow / Green / Pink</b><span>Your reservation helps decide the first sample run.</span></div></div>
         <form name="early-access" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="early-access" />
           <div class="field"><label>Name</label><input name="name" placeholder="Your name" required /></div>
@@ -317,17 +327,24 @@
     const target = Date.now() + 7*24*60*60*1000 + 18*60*60*1000;
     setInterval(()=>{let t=Math.max(0,target-Date.now());let d=Math.floor(t/86400000);t%=86400000;let h=Math.floor(t/3600000);t%=3600000;let m=Math.floor(t/60000);let sec=Math.floor((t%60000)/1000);['d','h','m','s'].forEach((id,i)=>{document.getElementById(id).textContent=[d,h,m,sec][i].toString().padStart(2,'0')})},1000);
 
-    document.querySelectorAll('.choice').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.choice').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const img = document.getElementById('mainProductRender');
-        const label = document.getElementById('viewerColorName');
-        img.style.transform = 'scale(.94) rotate(2deg)';
-        img.style.opacity = '.55';
-        setTimeout(() => { img.src = btn.dataset.img; label.textContent = btn.dataset.name; img.style.opacity = '1'; img.style.transform = ''; }, 180);
-      });
-    });
+    const colorways = Array.from(document.querySelectorAll('.choice')).map((btn, i) => ({ name: btn.dataset.name, img: btn.dataset.img, btn, dot: document.querySelector(`.dotChoice[data-index="${i}"]`) }));
+    let activeColor = 0;
+    function setColorway(i){
+      activeColor = (i + colorways.length) % colorways.length;
+      const c = colorways[activeColor];
+      colorways.forEach(x => { x.btn.classList.remove('active'); x.dot && x.dot.classList.remove('active'); });
+      c.btn.classList.add('active'); if(c.dot) c.dot.classList.add('active');
+      const img = document.getElementById('mainProductRender');
+      const label = document.getElementById('viewerColorName');
+      const modalImg = document.getElementById('modalRender');
+      const modalColor = document.getElementById('modalColor');
+      img.style.transform = 'scale(.94) rotate(2deg)'; img.style.opacity = '.55';
+      setTimeout(() => { img.src = c.img; label.textContent = c.name; modalImg.src = c.img; modalColor.textContent = c.name; img.style.opacity = '1'; img.style.transform = ''; }, 160);
+    }
+    colorways.forEach((c,i) => c.btn.addEventListener('click', () => setColorway(i)));
+    document.querySelectorAll('.dotChoice').forEach(dot => dot.addEventListener('click', () => setColorway(Number(dot.dataset.index))));
+    document.getElementById('prevColor').addEventListener('click', () => setColorway(activeColor - 1));
+    document.getElementById('nextColor').addEventListener('click', () => setColorway(activeColor + 1));
     document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
   </script>
 

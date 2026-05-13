@@ -108,6 +108,9 @@
     .dropMeter{height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid var(--line);margin-top:18px}.dropMeter i{display:block;height:100%;width:68%;background:linear-gradient(90deg,var(--pink),var(--blue),var(--green),var(--gold));box-shadow:0 0 22px rgba(51,214,255,.55);animation:meter 2.6s ease-in-out infinite}@keyframes meter{50%{width:84%}}
     .magnetic{transition:transform .2s ease}
 
+    .renderGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.renderCard{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.045);box-shadow:0 26px 90px rgba(0,0,0,.32);transition:.28s transform,.28s box-shadow}.renderCard:hover{transform:translateY(-8px);box-shadow:0 34px 110px rgba(255,79,216,.20),0 0 60px rgba(51,214,255,.13)}.renderCard img{width:100%;display:block;aspect-ratio:1;object-fit:cover}.renderMeta{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.86));}.renderMeta small{display:block;color:var(--gold2);letter-spacing:.14em;text-transform:uppercase;font-size:10px;font-weight:900}.renderMeta b{font-size:18px}.accuracyNote{margin-top:14px;color:var(--muted);font-size:13px;max-width:760px}
+
+
     @media(max-width:900px){.hero,.drop{grid-template-columns:1fr}.stage{min-height:520px}.grid,.showcase{grid-template-columns:1fr 1fr}.sectionHead{display:block}.lead{margin-top:14px}.stats{grid-template-columns:1fr}}
     @media(max-width:560px){.showcase,.grid{grid-template-columns:1fr}.nav{align-items:flex-start}.navlinks{justify-content:flex-end}.stage{min-height:430px;border-radius:28px}.label{display:block}.shell{padding-left:16px;padding-right:16px}}
   </style>
@@ -179,19 +182,16 @@
 
     <section id="finishes">
       <div class="sectionHead">
-        <h2>Choose the first colorway.</h2>
-        <p class="lead">These are the first looks we’re testing before samples: classic metal plus bold Royal Pop-style colorways built to match the energy of the collection.</p>
+        <h2>Colorway-matched renderings.</h2>
+        <p class="lead">These renderings are built from the Royal Pop reference palette we have: clean white, black/white, blue/white, and the bold yellow-green-pink hero mix.</p>
       </div>
-      <div class="showcase">
-        <div class="finish pinkpop"><small>Color 01</small><span>Pop Pink</span></div>
-        <div class="finish bluepop"><small>Color 02</small><span>Electric Blue</span></div>
-        <div class="finish greenpop"><small>Color 03</small><span>Acid Green</span></div>
-        <div class="finish orangepop"><small>Color 04</small><span>Solar Orange</span></div>
-        <div class="finish steel"><small>Color 05</small><span>Brushed Steel</span></div>
-        <div class="finish black"><small>Color 06</small><span>Gloss Black</span></div>
-        <div class="finish white"><small>Color 07</small><span>Polar White</span></div>
-        <div class="finish goldtone"><small>Color 08</small><span>Gold Pop</span></div>
+      <div class="renderGrid">
+        <div class="renderCard"><img src="/renders/royal-pop-white.png" alt="White colorway integrated bracelet rendering"><div class="renderMeta"><small>Colorway 01</small><b>Polar White</b></div></div>
+        <div class="renderCard"><img src="/renders/royal-pop-black-white.png" alt="Black and white colorway integrated bracelet rendering"><div class="renderMeta"><small>Colorway 02</small><b>Black / White</b></div></div>
+        <div class="renderCard"><img src="/renders/royal-pop-blue-white.png" alt="Blue and white colorway integrated bracelet rendering"><div class="renderMeta"><small>Colorway 03</small><b>Blue / White</b></div></div>
+        <div class="renderCard"><img src="/renders/royal-pop-popmix.png" alt="Yellow green pink colorway integrated bracelet rendering"><div class="renderMeta"><small>Colorway 04</small><b>Yellow / Green / Pink</b></div></div>
       </div>
+      <p class="accuracyNote">No logos or protected branding are used. Once official final color names/specs are confirmed, this palette can be tightened immediately.</p>
     </section>
 
     <section class="drop" id="checklist">
@@ -218,7 +218,7 @@
         <input type="hidden" name="form-name" value="early-access" />
         <div class="field"><label>Name</label><input name="name" placeholder="Your name" required /></div>
         <div class="field"><label>Email or phone</label><input name="contact" placeholder="Email or phone" required /></div>
-        <div class="field"><label>Which colorway would you preorder?</label><select name="style" required><option value="">Select one</option><option>Pop Pink</option><option>Electric Blue</option><option>Acid Green</option><option>Solar Orange</option><option>Polar White</option><option>Gloss Black</option><option>Brushed Steel</option><option>Gold Pop</option><option>Two-tone / mixed color</option></select></div>
+        <div class="field"><label>Which colorway would you preorder?</label><select name="style" required><option value="">Select one</option><option>Polar White</option><option>Black / White</option><option>Blue / White</option><option>Yellow / Green / Pink</option><option>Other official colorway</option></select></div>
         <div class="field"><label>Comfortable preorder price?</label><select name="price" required><option value="">Select one</option><option>$79-$99</option><option>$100-$149</option><option>$150-$199</option><option>$200+</option></select></div>
         <div class="field"><label>Notes</label><textarea name="notes" rows="4" placeholder="Tell us the color, finish, or detail that would make you buy immediately."></textarea></div>
         <button class="btn" type="submit">Join early access</button>

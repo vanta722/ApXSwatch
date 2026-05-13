@@ -118,6 +118,9 @@
 
 
 
+
+    .demandStatus{border:1px solid var(--line);border-radius:30px;padding:24px;background:radial-gradient(circle at 10% 0,rgba(255,79,216,.14),transparent 34%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:0 26px 90px rgba(0,0,0,.30)}.statusHeader{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.statusBadge{border:1px solid rgba(82,255,156,.30);background:rgba(82,255,156,.09);color:#baffd2;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.thresholdGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.threshold{border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px;background:rgba(0,0,0,.20)}.threshold b{display:block;font-size:22px;color:#fff}.threshold span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.threshold.active{border-color:rgba(255,209,102,.42);box-shadow:0 0 34px rgba(255,209,102,.08)}.demandNote{color:var(--muted);font-size:13px;margin-top:14px}.contentStrip{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contentCard{border:1px solid var(--line);border-radius:24px;padding:20px;background:rgba(255,255,255,.045)}.contentCard h3{font-family:"Playfair Display",serif;font-size:30px;margin:0 0 10px}.contentCard p{color:var(--muted);margin:0 0 12px}.copyBox{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;background:rgba(0,0,0,.22);color:#fff;font-size:14px}
+
     .reveal{opacity:0;transform:translateY(24px);transition:900ms ease opacity,900ms ease transform}.reveal.in{opacity:1;transform:none}
     .campaignHero{margin-top:34px;border:1px solid var(--line);border-radius:36px;overflow:hidden;position:relative;min-height:560px;background:#050505;box-shadow:0 40px 140px rgba(0,0,0,.55)}.campaignHero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.86}.campaignHero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.25),rgba(0,0,0,.82)),linear-gradient(0deg,rgba(0,0,0,.70),transparent 45%)}.campaignCopy{position:absolute;z-index:2;left:clamp(22px,5vw,56px);bottom:clamp(24px,5vw,56px);max-width:620px}.campaignCopy h2{font-size:clamp(42px,7vw,88px)}.campaignCopy p{color:var(--muted);font-size:18px;max-width:560px}.editorialGrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}.editorialCard{border:1px solid var(--line);border-radius:28px;padding:24px;min-height:260px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));position:relative;overflow:hidden}.editorialCard:before{content:attr(data-num);position:absolute;right:18px;top:14px;font-family:"Playfair Display",serif;font-size:72px;color:rgba(255,255,255,.055);line-height:1}.editorialCard h3{font-family:"Playfair Display",serif;font-size:30px;line-height:.95;margin:0 0 14px}.editorialCard p{color:var(--muted);margin:0}.materialLab{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.materialCard{border:1px solid var(--line);border-radius:32px;overflow:hidden;background:rgba(255,255,255,.045);box-shadow:0 30px 100px rgba(0,0,0,.36);transition:.28s transform,.28s box-shadow}.materialCard:hover{transform:translateY(-8px);box-shadow:0 40px 130px rgba(255,79,216,.16)}.materialCard img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.materialText{padding:22px}.materialText small{color:var(--gold2);letter-spacing:.16em;text-transform:uppercase;font-weight:900}.materialText h3{font-family:"Playfair Display",serif;font-size:34px;margin:8px 0 10px;line-height:.95}.materialText p{color:var(--muted);margin:0}.trustBar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}.trustItem{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(0,0,0,.22);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.10em}.trustItem b{display:block;color:#fff;font-size:18px;text-transform:none;letter-spacing:0;margin-bottom:4px}.modalTop h2{font-family:"Playfair Display", Georgia, serif}.luxuryInvite{border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:14px;margin:12px 0 16px;background:rgba(255,255,255,.045);color:var(--muted);font-size:13px}.sectionKicker{color:var(--gold2);text-transform:uppercase;letter-spacing:.22em;font-size:12px;font-weight:900;margin-bottom:12px}
 
@@ -155,7 +158,8 @@
       .label{display:block}
       .countdown{grid-template-columns:repeat(2,1fr)}
       .accessDock{grid-template-columns:1fr}
-      .campaignHero{min-height:560px;border-radius:28px}.campaignCopy{left:20px;right:20px}.trustBar{grid-template-columns:1fr 1fr}.editorialGrid,.materialLab{grid-template-columns:1fr}
+      .campaignHero{min-height:560px;border-radius:28px}
+      .thresholdGrid,.contentStrip{grid-template-columns:1fr}.campaignCopy{left:20px;right:20px}.trustBar{grid-template-columns:1fr 1fr}.editorialGrid,.materialLab{grid-template-columns:1fr}
       .accessCard{padding:18px}
       .miniAction:hover{transform:none}
       .renderCard{border-radius:24px}
@@ -172,6 +176,7 @@
     }
 
   </style>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <div class="loader"><div class="loaderInner"><div class="loaderMark">Royal<br>Pop</div><div class="loaderLine"></div><div class="loaderSub">First circle loading</div></div></div>
@@ -293,6 +298,23 @@
       </div>
     </section>
 
+    <section class="reveal" id="demand-status">
+      <div class="demandStatus">
+        <div class="statusHeader">
+          <div><div class="sectionKicker">Demand Status</div><h2>Voting open. Spending locked.</h2></div>
+          <div class="statusBadge">Gate 0 — No manufacturing spend</div>
+        </div>
+        <p class="lead">The first sample direction is not selected yet. We are collecting finish votes and buyer intent before CAD, tooling, samples, or inventory.</p>
+        <div class="thresholdGrid">
+          <div class="threshold active"><b>100</b><span>email signups = real signal</span></div>
+          <div class="threshold"><b>250</b><span>signups = strong signal</span></div>
+          <div class="threshold"><b>20</b><span>reservations = sample unlock</span></div>
+          <div class="threshold"><b>$1K</b><span>deposits = prototype path</span></div>
+        </div>
+        <p class="demandNote">No preorder is active yet. This is the first-circle list and finish vote. If demand shows up, we open refundable reservations next.</p>
+      </div>
+    </section>
+
     <div class="luxLine"></div>
 
     <section class="reveal">
@@ -332,6 +354,17 @@
         <h2>Bracelet early access</h2>
         <p>Get on the first list for renders, sample updates, preorder windows, and first-batch pricing before the public launch.</p>
         <a class="btn dark" href="#" data-open-modal>Reserve position</a>
+      </div>
+    </section>
+
+    <section class="reveal" id="launch-content">
+      <div class="sectionHead">
+        <div><div class="sectionKicker">Launch Content</div><h2>Simple message. Strong hook.</h2></div>
+        <p class="lead">The public angle stays focused: bracelet-first, no rubber, no fake logos, demand decides the first sample.</p>
+      </div>
+      <div class="contentStrip">
+        <div class="contentCard"><h3>Post angle</h3><p>Use this to drive votes.</p><div class="copyBox">We’re building a premium integrated bracelet upgrade — wide links, raised connectors, no rubber, no fake logos. Vote the first finish lane.</div></div>
+        <div class="contentCard"><h3>Buyer angle</h3><p>Use this to convert collectors.</p><div class="copyBox">Color gets attention. Bracelet architecture creates value. Join first circle before CAD/sample direction is chosen.</div></div>
       </div>
     </section>
 
@@ -381,11 +414,12 @@
     earlyForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(earlyForm);
-      try { await fetch('/', { method: 'POST', body: formData }); } catch(err) {}
+      try { await fetch('/api/lead', { method: 'POST', body: new URLSearchParams(formData) });
+        if (window.va) window.va('event', 'lead_submit', { style: formData.get('style'), price: formData.get('price') }); } catch(err) {}
       document.querySelector('.modal').classList.add('submitted');
     });
     const modal = document.getElementById('reserveModal');
-    const openModal = () => { modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('bodyLock'); setTimeout(()=>modal.querySelector('input[name="name"]').focus(),80); };
+    const openModal = () => { if (window.va) window.va('event', 'modal_open'); modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('bodyLock'); setTimeout(()=>modal.querySelector('input[name="name"]').focus(),80); };
     const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('bodyLock'); };
     document.querySelectorAll('[data-open-modal]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); openModal(); }));
     document.querySelector('.closeModal').addEventListener('click', closeModal);
@@ -413,7 +447,7 @@
     let activeColor = 0;
     function setColorway(i){
       activeColor = (i + colorways.length) % colorways.length;
-      const c = colorways[activeColor];
+      const c = colorways[activeColor]; if (window.va) window.va('event', 'finish_select', { finish: c.name });
       colorways.forEach(x => { x.btn.classList.remove('active'); x.dot && x.dot.classList.remove('active'); });
       c.btn.classList.add('active'); if(c.dot) c.dot.classList.add('active');
       const img = document.getElementById('mainProductRender');

@@ -44,10 +44,13 @@
     }
     a{color:inherit}
     .shell{max-width:1180px;margin:0 auto;padding:26px 20px 80px;position:relative;z-index:3}
-    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
-    .brand{letter-spacing:.22em;text-transform:uppercase;font-weight:900;font-size:12px;color:var(--gold2)}
-    .navlinks{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-    .pill{border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:var(--muted);font-size:13px;background:rgba(255,255,255,.035);backdrop-filter:blur(12px)}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:28px;padding:14px 16px;border:1px solid rgba(255,255,255,.16);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.035));backdrop-filter:blur(18px);box-shadow:0 24px 90px rgba(0,0,0,.24);position:relative;overflow:hidden}
+    .nav:before{content:"";position:absolute;inset:-1px;background:linear-gradient(120deg,rgba(255,79,216,.30),rgba(51,214,255,.18),rgba(255,209,102,.22));opacity:.18;pointer-events:none}
+    .brand{position:relative;z-index:1;letter-spacing:.22em;text-transform:uppercase;font-weight:900;font-size:12px;color:var(--gold2);white-space:nowrap}
+    .navlinks{position:relative;z-index:1;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:11px 15px;color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.24);backdrop-filter:blur(12px);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);transition:.22s transform,.22s background,.22s border-color}
+    .pill:hover{transform:translateY(-2px);background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.35)}
+    .pill.primary{background:linear-gradient(135deg,var(--pink),var(--blue));color:#08040b;border-color:transparent;box-shadow:0 12px 34px rgba(255,79,216,.22)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;padding:15px 22px;text-decoration:none;font-weight:900;letter-spacing:.01em;background:linear-gradient(135deg,var(--blue),var(--pink) 45%,var(--gold));color:#09040b;box-shadow:0 14px 44px rgba(255,79,216,.30),0 0 38px rgba(51,214,255,.18);cursor:pointer}
     .btn.dark{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line);box-shadow:none}
     .hero{min-height:auto;display:block;max-width:980px;padding:34px 0 50px}
@@ -121,8 +124,6 @@
 
 
     @media(max-width:900px){.hero,.drop{grid-template-columns:1fr}.stage{min-height:520px}.grid,.showcase{grid-template-columns:1fr 1fr}.sectionHead{display:block}.lead{margin-top:14px}.stats{grid-template-columns:1fr}}
-    @media(max-width:560px){.showcase,.grid{grid-template-columns:1fr}.nav{align-items:flex-start}.navlinks{justify-content:flex-end}.stage{min-height:430px;border-radius:28px}.label{display:block}.shell{padding-left:16px;padding-right:16px}}
-
     @media(max-width:560px){
       .shell{padding-top:calc(18px + env(safe-area-inset-top));padding-left:16px;padding-right:16px}
       .ticker{margin-top:8px;margin-bottom:22px}
@@ -132,8 +133,10 @@
       .eyebrow{font-size:10px;line-height:1.4;margin-bottom:14px}
       .sub{font-size:17px}
       .showcase,.grid,.renderGrid{grid-template-columns:1fr}
-      .nav{align-items:flex-start;gap:12px;flex-direction:column}
-      .navlinks{justify-content:flex-start}
+      .nav{align-items:stretch;gap:14px;flex-direction:column;padding:16px;border-radius:26px;margin-bottom:22px}
+      .brand{text-align:center;font-size:13px;letter-spacing:.24em}
+      .navlinks{display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:8px}
+      .pill{padding:12px 8px;font-size:10px;letter-spacing:.06em}
       .stage{min-height:430px;border-radius:28px}
       .glassRail{position:relative;top:auto;left:auto;right:auto;margin:14px;z-index:5;flex-wrap:wrap}
       .label{display:block}
@@ -157,9 +160,9 @@
     <nav class="nav">
       <div class="brand">Royal Pop Mods</div>
       <div class="navlinks">
-        <a class="pill" href="#interactive-preview">Finishes</a>
-        <a class="pill" href="#checklist">$5 Checklist</a>
-        <a class="pill" href="#" data-open-modal>Early Access</a>
+        <a class="pill" href="#interactive-preview">Preview</a>
+        <a class="pill" href="#checklist">Checklist</a>
+        <a class="pill primary" href="#" data-open-modal>Reserve</a>
       </div>
     </nav>
 

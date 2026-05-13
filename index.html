@@ -3,1686 +3,1392 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Royal Pop Mods — Integrated Bracelet Architecture</title>
-  <meta name="description" content="Premium no-logo integrated bracelet architecture for the AP x Swatch. Color-first. Demand-gated. First circle access now open." />
+  <title>Royal Pop Mods | Bracelet Architecture Drop</title>
+  <meta name="description" content="Premium integrated bracelet upgrades for the AP x Swatch. Color-first. Demand-gated. First circle access now open." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ==============================
-       TOKENS
-    ============================== */
-    :root {
-      --bg:          #050505;
-      --surface:     #0C0C0C;
-      --surface-hi:  #141414;
-      --border:      rgba(255,255,255,0.07);
-      --border-gold: rgba(184,150,12,0.32);
-      --gold:        #B8960C;
-      --gold-hi:     #D4AF37;
-      --gold-glow:   rgba(184,150,12,0.12);
-      --ink:         #F0EDE6;
-      --muted:       #7A7672;
-      --faint:       #2A2826;
-      --platinum:    #C4C0B8;
-      --serif:       'Cormorant Garamond', Georgia, serif;
-      --sans:        'DM Sans', ui-sans-serif, system-ui, sans-serif;
-      --ease-lux:    cubic-bezier(0.25, 0.1, 0.10, 1.00);
-    }
+<style>
+/* ─── TOKENS ─────────────────────────────────── */
+:root{
+  --bg:#05040a;
+  --ink:#fff8f0;
+  --muted:#c9bed0;
+  --soft:#171226;
+  --line:rgba(255,255,255,.14);
+  --gold:#ffd166;
+  --gold2:#fff0a6;
+  --pink:#ff4fd8;
+  --blue:#33d6ff;
+  --green:#52ff9c;
+  --orange:#ff8a2a;
+  --violet:#8a5cff;
+  --shadow:rgba(0,0,0,.70);
+}
 
-    /* ==============================
-       RESET & BASE
-    ============================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: auto; } /* Lenis handles smooth scroll */
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-      cursor: none;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+/* ─── RESET ──────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  cursor:none;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 
-    /* ==============================
-       NOISE OVERLAY
-    ============================== */
-    .noise {
-      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+/* ─── NOISE ──────────────────────────────────── */
+.noise{
+  position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.10;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
 
-    /* ==============================
-       CUSTOM CURSOR
-    ============================== */
-    #cursor-dot {
-      position: fixed; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold-hi); pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
-    }
-    #cursor-ring {
-      position: fixed; width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid rgba(184,150,12,0.5);
-      pointer-events: none; z-index: 9997;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s var(--ease-lux), height 0.35s var(--ease-lux),
-                  border-color 0.35s, opacity 0.3s;
-    }
-    body:has(a:hover) #cursor-ring,
-    body:has(button:hover) #cursor-ring {
-      width: 56px; height: 56px;
-      border-color: var(--gold-hi);
-    }
+/* ─── CURSOR ─────────────────────────────────── */
+#cursor-dot{
+  position:fixed;width:8px;height:8px;border-radius:50%;
+  background:var(--pink);pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 12px var(--pink),0 0 24px var(--pink);
+  transition:background .2s,box-shadow .2s;
+}
+#cursor-ring{
+  position:fixed;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,79,216,.5);pointer-events:none;z-index:9997;
+  transform:translate(-50%,-50%);
+  transition:width .4s ease,height .4s ease,border-color .3s,opacity .3s;
+}
+body.cursor-hover #cursor-ring{width:60px;height:60px;border-color:var(--gold)}
+body.cursor-hover #cursor-dot{background:var(--gold);box-shadow:0 0 12px var(--gold),0 0 24px var(--gold)}
 
-    /* ==============================
-       LOADER
-    ============================== */
-    #loader {
-      position: fixed; inset: 0; z-index: 9000;
-      background: #020202;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 28px;
-    }
-    #loader .l-mark {
-      font-family: var(--serif); font-size: 11px; font-weight: 400;
-      letter-spacing: 0.45em; text-transform: uppercase; color: var(--muted);
-      overflow: hidden;
-    }
-    #loader .l-mark span {
-      display: inline-block;
-      transform: translateY(100%); opacity: 0;
-    }
-    #loader .l-title {
-      font-family: var(--serif); font-size: clamp(40px, 8vw, 72px);
-      font-weight: 300; letter-spacing: -0.03em; color: var(--ink);
-      overflow: hidden;
-    }
-    #loader .l-title span {
-      display: inline-block;
-      transform: translateY(110%); opacity: 0;
-    }
-    #loader .l-bar {
-      width: 160px; height: 1px; background: var(--faint); overflow: hidden;
-    }
-    #loader .l-bar i {
-      display: block; height: 100%; width: 0;
-      background: linear-gradient(90deg, var(--gold), var(--gold-hi));
-    }
+/* ─── CANVAS PARTICLES ───────────────────────── */
+#particles{
+  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.55;
+}
 
-    /* ==============================
-       CONTAINER
-    ============================== */
-    .container {
-      max-width: 1240px; margin: 0 auto; padding: 0 32px;
-    }
+/* ─── SPOTLIGHT ──────────────────────────────── */
+#spotlight{
+  position:fixed;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,79,216,.12),rgba(51,214,255,.06) 35%,transparent 68%);
+  pointer-events:none;z-index:2;transform:translate(-50%,-50%);
+  filter:blur(20px);opacity:.8;
+}
 
-    /* ==============================
-       NAV
-    ============================== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
-      padding: 22px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.6s, border-bottom 0.6s, backdrop-filter 0.6s;
-    }
-    nav.scrolled {
-      background: rgba(5,5,5,0.85);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(24px);
-    }
-    .nav-brand {
-      font-family: var(--serif); font-size: 13px; font-weight: 400;
-      letter-spacing: 0.35em; text-transform: uppercase; color: var(--platinum);
-    }
-    .nav-right {
-      display: flex; align-items: center; gap: 28px;
-    }
-    .nav-link {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-      transition: color 0.3s;
-    }
-    .nav-link:hover { color: var(--ink); }
-    .nav-cta {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--gold-hi);
-      border: 1px solid var(--border-gold); border-radius: 2px;
-      padding: 10px 18px;
-      transition: background 0.3s, color 0.3s;
-    }
-    .nav-cta:hover {
-      background: var(--gold-glow); color: var(--ink);
-    }
+/* ─── LOADER ─────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:8000;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  overflow:hidden;
+}
+#loader .l-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 30% 40%,rgba(255,79,216,.35) 0,transparent 45%),
+    radial-gradient(circle at 70% 60%,rgba(51,214,255,.30) 0,transparent 45%),
+    radial-gradient(circle at 50% 50%,rgba(82,255,156,.18) 0,transparent 40%);
+  animation:lbg 4s ease-in-out infinite alternate;
+  opacity:0;
+}
+@keyframes lbg{to{opacity:1}}
+#loader .l-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--gold);opacity:0;transform:translateY(12px);
+}
+#loader .l-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,9vw,88px);font-weight:700;
+  background:linear-gradient(135deg,var(--pink),var(--blue) 40%,var(--gold2) 70%,var(--green));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  opacity:0;transform:translateY(20px);
+  letter-spacing:-.03em;
+}
+#loader .l-bar{
+  width:200px;height:1px;background:rgba(255,255,255,.08);overflow:hidden;
+}
+#loader .l-bar i{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--pink),var(--blue),var(--green),var(--gold));
+}
 
-    /* ==============================
-       HERO
-    ============================== */
-    #hero {
-      min-height: 100svh;
-      display: grid; place-items: center;
-      position: relative; overflow: hidden;
-      padding: 120px 40px 80px;
-    }
-    .hero-inner {
-      max-width: 1240px; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.4em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 1px;
-      background: var(--gold);
-    }
-    h1.hero-headline {
-      font-family: var(--serif); font-size: clamp(56px, 7vw, 100px);
-      font-weight: 300; line-height: 0.95; letter-spacing: -0.03em;
-      color: var(--ink); margin-bottom: 32px;
-    }
-    h1.hero-headline em {
-      font-style: italic; color: var(--platinum);
-    }
-    .hero-sub {
-      font-size: 16px; line-height: 1.65; color: var(--muted);
-      max-width: 400px; margin-bottom: 44px;
-    }
-    .hero-actions {
-      display: flex; gap: 16px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--gold); color: #050505;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-      border-radius: 2px; padding: 16px 28px;
-      transition: background 0.3s, transform 0.3s var(--ease-lux);
-    }
-    .btn-primary:hover { background: var(--gold-hi); transform: translateY(-2px); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: transparent; color: var(--ink);
-      font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-      border: 1px solid var(--border); border-radius: 2px; padding: 16px 28px;
-      transition: border-color 0.3s, transform 0.3s var(--ease-lux);
-    }
-    .btn-ghost:hover { border-color: var(--platinum); transform: translateY(-2px); }
+/* ─── NAV ────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:700;
+  padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s,backdrop-filter .5s;
+}
+nav.scrolled{
+  background:rgba(5,4,10,.85);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px);
+}
+.nav-brand{
+  font-size:11px;font-weight:900;letter-spacing:.28em;text-transform:uppercase;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.nav-links{display:flex;align-items:center;gap:10px}
+.pill{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--line);border-radius:999px;
+  padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(0,0,0,.22);backdrop-filter:blur(10px);
+  transition:.25s transform,.25s background,.25s border-color;
+}
+.pill:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+.pill.primary{
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  color:#050408;border-color:transparent;
+  box-shadow:0 8px 28px rgba(255,79,216,.28);
+}
 
-    /* Hero media */
-    .hero-media {
-      position: relative; z-index: 2; display: flex;
-      align-items: center; justify-content: center;
-    }
-    .hero-render-wrap {
-      position: relative; width: 100%; max-width: 480px;
-    }
-    #heroRender {
-      width: 100%; filter: drop-shadow(0 60px 80px rgba(0,0,0,0.85));
-      transform-origin: center bottom;
-    }
-    .hero-render-glow {
-      position: absolute; inset: 20%; z-index: -1;
-      background: radial-gradient(circle, rgba(184,150,12,0.08) 0%, transparent 70%);
-      filter: blur(40px);
-      animation: glow-pulse 4s ease-in-out infinite;
-    }
-    @keyframes glow-pulse {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.15); }
-    }
-    .hero-render-shimmer {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(212,175,55,0.06) 55%, transparent 70%);
-      animation: shimmer-pass 5s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes shimmer-pass {
-      0% { opacity: 0; transform: translateX(-100%); }
-      30% { opacity: 1; }
-      60% { opacity: 0; transform: translateX(100%); }
-      100% { opacity: 0; transform: translateX(100%); }
-    }
+/* ─── TICKER ─────────────────────────────────── */
+.ticker-wrap{
+  position:relative;z-index:10;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.035);backdrop-filter:blur(10px);
+}
+.ticker-track{
+  display:flex;width:max-content;
+  animation:ticker 28s linear infinite;
+}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{
+  padding:13px 24px;font-size:11px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;white-space:nowrap;color:var(--gold2);
+}
+.ticker-sep{
+  display:flex;align-items:center;padding:0 6px;
+  color:var(--pink);font-size:16px;
+}
+@keyframes ticker{to{transform:translateX(-50%)}}
 
-    /* Countdown */
-    .hero-countdown {
-      margin-top: 44px;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .cd-unit {
-      text-align: center; min-width: 52px;
-    }
-    .cd-unit b {
-      display: block; font-family: var(--serif); font-size: 32px;
-      font-weight: 300; color: var(--ink); line-height: 1;
-    }
-    .cd-unit span {
-      display: block; font-size: 9px; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--muted); margin-top: 4px;
-    }
-    .cd-sep {
-      font-family: var(--serif); font-size: 24px; font-weight: 300;
-      color: var(--faint); padding: 0 2px; margin-bottom: 14px;
-    }
+/* ─── SHELL ──────────────────────────────────── */
+.shell{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:5}
 
-    /* Hero ambient gradient */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse at 70% 30%, rgba(184,150,12,0.04) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 80%, rgba(196,192,184,0.03) 0%, transparent 50%);
-    }
+/* ─── HERO ───────────────────────────────────── */
+#hero{
+  min-height:100svh;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 0 80px;
+  background:
+    radial-gradient(circle at 18% 14%,rgba(255,79,216,.28) 0,transparent 32%),
+    radial-gradient(circle at 78% 18%,rgba(51,214,255,.24) 0,transparent 34%),
+    radial-gradient(circle at 54% 58%,rgba(82,255,156,.12) 0,transparent 36%),
+    radial-gradient(circle at 90% 75%,rgba(255,138,42,.16) 0,transparent 32%),
+    linear-gradient(180deg,#070412,#03030a 50%,#080512);
+}
+/* scanline */
+#hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:100% 4px;mix-blend-mode:overlay;opacity:.25;
+}
 
-    /* ==============================
-       TICKER
-    ============================== */
-    .ticker-wrap {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden; background: var(--surface);
-      padding: 0;
-    }
-    .ticker-track {
-      display: flex; width: max-content;
-      animation: ticker-run 30s linear infinite;
-    }
-    .ticker-track:hover { animation-play-state: paused; }
-    .ticker-item {
-      padding: 16px 28px;
-      font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--muted); white-space: nowrap;
-    }
-    .ticker-dot {
-      padding: 16px 4px; color: var(--border-gold); font-size: 16px;
-      display: flex; align-items: center;
-    }
-    @keyframes ticker-run { to { transform: translateX(-50%); } }
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
 
-    /* ==============================
-       SECTIONS — SHARED
-    ============================== */
-    .section { padding: 120px 0; }
-    .section-sm { padding: 80px 0; }
-    .section-border-top { border-top: 1px solid var(--border); }
+/* hero copy */
+.hero-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:20px;display:flex;align-items:center;gap:10px;
+  opacity:0;transform:translateY(16px);
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,7.5vw,108px);
+  font-weight:700;line-height:.88;letter-spacing:-.04em;
+  margin-bottom:28px;
+  opacity:0;transform:translateY(24px);
+}
+.grad-text{
+  background:linear-gradient(135deg,var(--blue),var(--pink) 40%,var(--gold2) 72%,var(--green));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  font-size:17px;line-height:1.6;color:var(--muted);
+  max-width:420px;margin-bottom:36px;
+  opacity:0;transform:translateY(16px);
+}
+.hero-cta{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;
+  opacity:0;transform:translateY(16px);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:999px;padding:15px 26px;font-weight:700;
+  font-size:13px;letter-spacing:.04em;
+  transition:.25s transform,.25s box-shadow;
+  cursor:none;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-main{
+  background:linear-gradient(135deg,var(--blue),var(--pink) 45%,var(--gold));
+  color:#09040b;
+  box-shadow:0 12px 40px rgba(255,79,216,.30),0 0 40px rgba(51,214,255,.16);
+}
+.btn-main:hover{box-shadow:0 20px 60px rgba(255,79,216,.45),0 0 60px rgba(51,214,255,.25)}
+.btn-ghost{
+  background:rgba(255,255,255,.06);color:var(--ink);
+  border:1px solid var(--line);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
 
-    .section-label {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.38em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 24px; display: flex; align-items: center; gap: 14px;
-    }
-    .section-label::after {
-      content: ''; display: block; flex: 1; max-width: 60px;
-      height: 1px; background: var(--border-gold);
-    }
-    h2.section-title {
-      font-family: var(--serif); font-size: clamp(42px, 5.5vw, 80px);
-      font-weight: 300; line-height: 1; letter-spacing: -0.03em;
-      color: var(--ink);
-    }
-    h2.section-title em { font-style: italic; color: var(--muted); }
-    .section-lead {
-      font-size: 17px; line-height: 1.7; color: var(--muted);
-      max-width: 560px;
-    }
+/* countdown */
+.countdown{
+  display:flex;align-items:center;gap:6px;
+  opacity:0;transform:translateY(16px);
+}
+.timebox{
+  border:1px solid var(--line);background:rgba(0,0,0,.30);
+  border-radius:14px;padding:12px 14px;text-align:center;min-width:58px;
+  backdrop-filter:blur(10px);
+}
+.timebox b{display:block;font-size:26px;font-weight:700;line-height:1;color:#fff}
+.timebox span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em}
+.cd-sep{font-size:22px;font-weight:700;color:var(--line);margin-bottom:16px}
 
-    /* Gold divider */
-    .gold-rule {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.4; margin: 0;
-    }
+/* hero stage */
+.hero-stage-wrap{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.94);
+}
+.stage{
+  width:100%;aspect-ratio:1/1;max-width:520px;
+  border:1px solid var(--line);border-radius:28px;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  box-shadow:0 40px 120px var(--shadow);
+  background:rgba(0,0,0,.4);
+}
+/* spinning color halo */
+.stage-halo{
+  position:absolute;inset:-30%;
+  background:conic-gradient(from 0deg,
+    var(--pink),var(--violet),var(--blue),var(--green),var(--gold),var(--orange),var(--pink));
+  animation:halo-spin 8s linear infinite;
+  opacity:.7;
+  filter:blur(2px);
+}
+.stage-halo-inner{
+  position:absolute;inset:-30%;
+  background:conic-gradient(from 180deg,
+    var(--blue),var(--green),var(--gold),var(--pink),var(--violet),var(--blue));
+  animation:halo-spin 12s linear infinite reverse;
+  opacity:.4;
+  filter:blur(4px);
+}
+@keyframes halo-spin{to{transform:rotate(360deg)}}
+.stage-mask{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 48%,transparent 0 28%,rgba(5,4,10,.92) 58%,rgba(5,4,10,.98));
+}
+.stage-img{
+  position:relative;z-index:3;
+  width:65%;height:65%;object-fit:contain;
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,.85));
+  animation:float 5.5s ease-in-out infinite;
+}
+@keyframes float{50%{transform:translateY(-16px) rotate(-1.5deg)}}
 
-    /* Reveal animation base */
-    .reveal {
-      opacity: 0; transform: translateY(36px);
-      transition: opacity 0.9s var(--ease-lux), transform 0.9s var(--ease-lux);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
+/* corner annotations */
+.stage-rail{
+  position:absolute;z-index:4;
+  top:16px;left:16px;right:16px;
+  display:flex;justify-content:space-between;gap:8px;
+}
+.stage-pill{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.3);backdrop-filter:blur(12px);
+  border-radius:999px;padding:8px 12px;
+  font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.7);
+}
+.stage-label{
+  position:absolute;z-index:4;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+}
 
-    /* ==============================
-       ARCHITECTURE SPLIT
-    ============================== */
-    .arch-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: start; margin-top: 64px;
-    }
-    .arch-left h2 {
-      font-family: var(--serif); font-size: clamp(36px, 4vw, 60px);
-      font-weight: 300; line-height: 1.05; letter-spacing: -0.03em;
-      color: var(--ink);
-    }
-    .arch-right p {
-      font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 44px;
-    }
-    .spec-list { display: flex; flex-direction: column; gap: 0; }
-    .spec-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .spec-item:first-child { border-top: 1px solid var(--border); }
-    .spec-item span {
-      font-size: 13px; font-weight: 500; color: var(--ink); letter-spacing: 0.03em;
-    }
-    .spec-item i {
-      font-style: normal; font-size: 11px; font-weight: 400;
-      letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
-    }
+/* color orbs */
+.orb{
+  position:absolute;border-radius:50%;filter:blur(22px);
+  animation:orb-pulse 4s ease-in-out infinite;pointer-events:none;
+}
+.orb-1{width:90px;height:90px;background:var(--pink);top:10%;left:5%;opacity:.6}
+.orb-2{width:120px;height:120px;background:var(--blue);right:6%;top:15%;opacity:.55;animation-delay:.8s}
+.orb-3{width:80px;height:80px;background:var(--green);bottom:14%;left:15%;opacity:.5;animation-delay:1.6s}
+.orb-4{width:70px;height:70px;background:var(--gold);bottom:20%;right:12%;opacity:.45;animation-delay:2.4s}
+@keyframes orb-pulse{50%{transform:scale(1.35);opacity:.9}}
 
-    /* ==============================
-       PIN / ANATOMY SECTION
-    ============================== */
-    #anatomy {
-      position: relative;
-    }
-    .anatomy-container {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; min-height: 500px; align-items: center;
-    }
-    .anatomy-image {
-      position: relative; border-radius: 4px; overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .anatomy-image img {
-      width: 100%; display: block;
-      filter: grayscale(20%) contrast(1.05);
-    }
-    .anatomy-steps { display: flex; flex-direction: column; gap: 0; }
-    .anatomy-step {
-      padding: 28px 0; border-bottom: 1px solid var(--border);
-      opacity: 0.35; transition: opacity 0.5s var(--ease-lux);
-      cursor: default;
-    }
-    .anatomy-step:first-child { border-top: 1px solid var(--border); }
-    .anatomy-step.active { opacity: 1; }
-    .anatomy-step .step-n {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-    }
-    .anatomy-step h3 {
-      font-family: var(--serif); font-size: 28px; font-weight: 400;
-      color: var(--ink); margin-bottom: 8px;
-    }
-    .anatomy-step p {
-      font-size: 14px; color: var(--muted); line-height: 1.65;
-    }
+/* stats */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:32px;
+  opacity:0;transform:translateY(16px);
+}
+.stat{
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  border-radius:16px;padding:16px;backdrop-filter:blur(8px);
+}
+.stat b{display:block;font-size:20px;color:var(--ink)}
+.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
 
-    /* ==============================
-       CONFIGURATOR
-    ============================== */
-    #configurator { background: var(--surface); }
-    .config-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-      margin-top: 64px;
-    }
-    .config-stage {
-      position: relative;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 4px; overflow: hidden;
-      aspect-ratio: 1 / 1.05;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #mainProductRender {
-      width: 85%; height: 85%; object-fit: contain;
-      filter: drop-shadow(0 30px 50px rgba(0,0,0,0.9));
-      transition: opacity 0.3s var(--ease-lux), transform 0.35s var(--ease-lux);
-    }
-    .config-stage-bg {
-      position: absolute; inset: 0; z-index: 0;
-      transition: background 0.8s var(--ease-lux);
-    }
-    .config-stage-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: radial-gradient(circle at center, transparent 40%, var(--bg) 85%);
-    }
-    #mainProductRender { position: relative; z-index: 2; }
-    .config-stage-label {
-      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-      z-index: 3; display: flex; align-items: center; gap: 10px;
-    }
-    #viewerColorName {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .config-nav-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid var(--border); background: rgba(5,5,5,0.8);
-      color: var(--muted); font-size: 14px; cursor: none;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .config-nav-btn:hover { border-color: var(--gold); color: var(--gold-hi); }
-    .config-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      left: 16px; right: 16px; z-index: 4;
-      display: flex; justify-content: space-between; pointer-events: none;
-    }
-    .config-nav .config-nav-btn { pointer-events: all; }
+/* lux divider */
+.lux-rule{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--pink),var(--blue),var(--gold),var(--green),transparent);
+  opacity:0;
+  box-shadow:0 0 20px rgba(255,79,216,.4);
+  transform:scaleX(0);transform-origin:left;
+}
 
-    /* Finish choices */
-    .config-controls { display: flex; flex-direction: column; gap: 32px; }
-    .config-finish-list { display: flex; flex-direction: column; gap: 0; }
-    .choice {
-      display: flex; align-items: center; gap: 18px;
-      padding: 18px 0; border-bottom: 1px solid var(--border);
-      cursor: none; transition: opacity 0.3s;
-      opacity: 0.45;
-    }
-    .choice:first-child { border-top: 1px solid var(--border); }
-    .choice.active { opacity: 1; }
-    .choice-swatch {
-      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    .choice-info { flex: 1; }
-    .choice-name {
-      font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px;
-    }
-    .choice-sub {
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .choice-active-mark {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .choice.active .choice-active-mark { opacity: 1; }
+/* ─── SECTIONS ───────────────────────────────── */
+section{padding:100px 0;position:relative;z-index:5}
 
-    /* Dot nav */
-    .config-dots {
-      display: flex; gap: 8px; justify-content: center;
-    }
-    .dotChoice {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--faint); cursor: none;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .dotChoice.active { background: var(--gold-hi); transform: scale(1.5); }
+.section-kicker{
+  font-size:10px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:14px;
+}
+h2.section-h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,5vw,72px);font-weight:700;
+  line-height:.95;letter-spacing:-.04em;margin-bottom:20px;
+}
+.section-lead{font-size:17px;color:var(--muted);line-height:1.65;max-width:540px}
 
-    /* ==============================
-       DEMAND TRACKER
-    ============================== */
-    #demand { background: var(--surface); }
-    .demand-header {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 40px;
-      padding-bottom: 48px; border-bottom: 1px solid var(--border);
-      margin-bottom: 48px;
-    }
-    .demand-status-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(184,150,12,0.3);
-      background: var(--gold-glow);
-      padding: 8px 16px; border-radius: 2px;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--gold-hi);
-    }
-    .demand-status-badge::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 50% { opacity: 0.2; } }
-    .threshold-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
-    .threshold-card {
-      border: 1px solid var(--border);
-      background: var(--bg); border-radius: 4px;
-      padding: 24px 20px;
-      transition: border-color 0.4s;
-    }
-    .threshold-card.active { border-color: var(--border-gold); }
-    .threshold-num {
-      font-family: var(--serif); font-size: 38px; font-weight: 300;
-      color: var(--ink); line-height: 1; margin-bottom: 8px;
-    }
-    .threshold-card.active .threshold-num { color: var(--gold-hi); }
-    .threshold-label {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .threshold-desc {
-      font-size: 12px; color: var(--faint); margin-top: 8px;
-      line-height: 1.5; border-top: 1px solid var(--border);
-      padding-top: 10px; margin-top: 12px;
-    }
-    .threshold-card.active .threshold-desc { color: var(--muted); }
-    .demand-note {
-      margin-top: 32px; font-size: 13px; color: var(--muted);
-      padding-left: 16px; border-left: 2px solid var(--border-gold);
-    }
+.section-head{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:32px;
+  flex-wrap:wrap;margin-bottom:56px;
+}
 
-    /* ==============================
-       LANES / FINISHES
-    ============================== */
-    .lanes-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 64px;
-    }
-    .lane-card {
-      position: relative; overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 48px 36px;
-      transition: border-color 0.5s;
-    }
-    .lane-card:hover { border-color: var(--border-gold); }
-    .lane-num {
-      font-family: var(--serif); font-size: 80px; font-weight: 300;
-      color: var(--faint); line-height: 1; position: absolute;
-      top: 24px; right: 24px; pointer-events: none;
-      transition: color 0.5s;
-    }
-    .lane-card:hover .lane-num { color: var(--border-gold); }
-    .lane-swatch-bar {
-      width: 48px; height: 3px; border-radius: 2px;
-      margin-bottom: 32px;
-    }
-    .lane-card h3 {
-      font-family: var(--serif); font-size: 30px; font-weight: 400;
-      color: var(--ink); margin-bottom: 12px; position: relative; z-index: 1;
-    }
-    .lane-card p {
-      font-size: 14px; color: var(--muted); line-height: 1.7;
-      position: relative; z-index: 1;
-    }
-    .lane-shimmer {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, transparent 30%, rgba(212,175,55,0.04) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.7s var(--ease-lux);
-    }
-    .lane-card:hover .lane-shimmer { transform: translateX(100%); }
-    .lane-vote {
-      margin-top: 24px; display: flex; align-items: center; gap: 12px;
-    }
-    .lane-vote-bar {
-      flex: 1; height: 2px; background: var(--faint); border-radius: 1px; overflow: hidden;
-    }
-    .lane-vote-fill {
-      height: 100%; background: var(--gold);
-      transition: width 1.5s var(--ease-lux);
-      width: 0;
-    }
-    .lane-vote-pct {
-      font-family: var(--serif); font-size: 18px; font-weight: 300;
-      color: var(--muted); min-width: 36px; text-align: right;
-    }
+/* glass card */
+.glass-card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  border-radius:24px;padding:28px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+  position:relative;overflow:hidden;
+}
+.glass-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,79,216,.08),rgba(51,214,255,.05));
+  opacity:0;transition:.4s opacity;
+}
+.glass-card:hover::before{opacity:1}
+.glass-card:hover{border-color:rgba(255,255,255,.22)}
 
-    /* ==============================
-       STORY / EDITORIAL GRID
-    ============================== */
-    .editorial-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2px; margin-top: 64px;
-    }
-    .editorial-card {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 44px 40px; position: relative; overflow: hidden;
-      transition: border-color 0.4s;
-    }
-    .editorial-card:hover { border-color: var(--border-gold); }
-    .editorial-num {
-      font-family: var(--serif); font-size: 120px; font-weight: 300;
-      color: var(--faint); line-height: 1;
-      position: absolute; right: 24px; top: 16px;
-      pointer-events: none;
-      transition: color 0.4s;
-    }
-    .editorial-card:hover .editorial-num { color: rgba(184,150,12,0.12); }
-    .editorial-card h3 {
-      font-family: var(--serif); font-size: 32px; font-weight: 400;
-      color: var(--ink); margin-bottom: 12px; position: relative; z-index: 1;
-    }
-    .editorial-card p {
-      font-size: 14px; color: var(--muted); line-height: 1.7;
-      position: relative; z-index: 1; max-width: 340px;
-    }
+/* ─── ARCHITECTURE SPECS ─────────────────────── */
+.spec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+.spec-card{
+  border:1px solid var(--line);border-radius:18px;padding:22px;
+  background:rgba(255,255,255,.04);
+  position:relative;overflow:hidden;
+  transition:.35s border-color,.35s background;
+}
+.spec-card:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.07)}
+.spec-num{
+  font-family:'Playfair Display',serif;font-size:48px;font-weight:700;
+  color:rgba(255,255,255,.06);position:absolute;right:14px;top:8px;line-height:1;
+}
+.spec-title{font-size:15px;font-weight:700;margin-bottom:6px;position:relative;z-index:1}
+.spec-desc{font-size:13px;color:var(--muted);line-height:1.6;position:relative;z-index:1}
 
-    /* ==============================
-       CTA SECTION
-    ============================== */
-    #cta {
-      background: var(--surface);
-    }
-    .cta-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    }
-    .cta-card {
-      background: var(--bg); border: 1px solid var(--border);
-      padding: 56px 48px;
-      transition: border-color 0.4s;
-    }
-    .cta-card:hover { border-color: var(--border-gold); }
-    .cta-card .eyebrow-sm {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-    }
-    .cta-card h2 {
-      font-family: var(--serif); font-size: clamp(28px, 3vw, 44px);
-      font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
-      color: var(--ink); margin-bottom: 16px;
-    }
-    .cta-card p {
-      font-size: 15px; color: var(--muted); line-height: 1.65;
-      margin-bottom: 32px; max-width: 360px;
-    }
+/* ─── CONFIGURATOR ───────────────────────────── */
+#configurator{
+  background:radial-gradient(circle at 20% 50%,rgba(255,79,216,.06) 0,transparent 40%),
+             radial-gradient(circle at 80% 50%,rgba(51,214,255,.05) 0,transparent 40%);
+}
+.config-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 
-    /* ==============================
-       MODAL
-    ============================== */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 8000;
-      background: rgba(3,3,3,0.92); backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.4s var(--ease-lux);
-      padding: 20px;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      max-width: 600px; width: 100%;
-      max-height: 90vh; overflow-y: auto;
-      padding: 48px;
-      transform: translateY(24px);
-      transition: transform 0.4s var(--ease-lux);
-      position: relative;
-    }
-    .modal-overlay.open .modal-box { transform: translateY(0); }
-    .modal-close {
-      position: absolute; top: 20px; right: 20px;
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--muted); font-size: 18px; cursor: none;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .modal-close:hover { border-color: var(--platinum); color: var(--ink); }
-    .modal-eyebrow {
-      font-size: 10px; font-weight: 500; letter-spacing: 0.38em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
-    }
-    .modal-title {
-      font-family: var(--serif); font-size: 44px; font-weight: 300;
-      line-height: 1.05; letter-spacing: -0.02em; color: var(--ink);
-      margin-bottom: 12px;
-    }
-    .modal-sub {
-      font-size: 14px; color: var(--muted); margin-bottom: 32px;
-    }
-    .modal-preview {
-      display: flex; align-items: center; gap: 16px;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 4px; padding: 16px; margin-bottom: 32px;
-    }
-    .modal-preview img {
-      width: 64px; height: 64px; object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
-    }
-    .modal-preview b {
-      display: block; font-family: var(--serif); font-size: 18px;
-      font-weight: 400; color: var(--ink); margin-bottom: 2px;
-    }
-    .modal-preview span {
-      font-size: 11px; color: var(--muted); letter-spacing: 0.08em;
-    }
-    .modal-notice {
-      font-size: 12px; color: var(--muted); border-left: 2px solid var(--border-gold);
-      padding-left: 14px; margin-bottom: 28px; line-height: 1.6;
-    }
+/* viewer */
+.viewer{
+  position:relative;border:1px solid var(--line);border-radius:28px;
+  overflow:hidden;aspect-ratio:1/1;
+  background:radial-gradient(circle at 50% 50%,rgba(255,79,216,.12) 0,rgba(5,4,10,.95) 60%);
+  transition:background .7s ease;
+}
+.viewer-halo{
+  position:absolute;inset:-20%;
+  background:conic-gradient(from 0deg,var(--pink),var(--violet),var(--blue),var(--green),var(--gold),var(--orange),var(--pink));
+  animation:halo-spin 10s linear infinite;opacity:.45;filter:blur(3px);
+}
+.viewer-mask{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,transparent 0 30%,rgba(5,4,10,.95) 60%);
+}
+#mainProductRender{
+  position:relative;z-index:2;width:72%;height:72%;object-fit:contain;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.9));
+  animation:float 5.5s ease-in-out infinite;
+  transition:opacity .3s ease,transform .35s ease;
+  margin:0 auto;display:block;
+}
+.viewer-nav{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  z-index:4;display:flex;align-items:center;gap:12px;
+}
+.vnav-btn{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(0,0,0,.4);
+  color:var(--muted);font-size:14px;cursor:none;
+  display:flex;align-items:center;justify-content:center;
+  transition:.25s border-color,.25s color;
+}
+.vnav-btn:hover{border-color:var(--gold);color:var(--gold)}
+#viewerColorName{
+  font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+}
 
-    /* Form */
-    .form-grid { display: grid; gap: 20px; }
-    .form-field { display: grid; gap: 8px; }
-    .form-field label {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      width: 100%;
-      background: var(--bg); border: 1px solid var(--border);
-      color: var(--ink); border-radius: 2px;
-      padding: 14px 16px; font-size: 14px; font-family: var(--sans);
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus { border-color: var(--border-gold); }
-    .form-field input::placeholder { color: var(--faint); }
-    .form-field textarea { resize: vertical; min-height: 96px; }
-    .form-field select { appearance: none; }
-    .form-fine {
-      font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 4px;
-    }
-    .modal-submitted { display: none; text-align: center; padding: 40px 0; }
-    .modal-submitted h3 {
-      font-family: var(--serif); font-size: 36px; font-weight: 300;
-      color: var(--ink); margin-bottom: 12px;
-    }
-    .modal-submitted p { font-size: 14px; color: var(--muted); }
-    .modal-box.submitted .modal-form-content { display: none; }
-    .modal-box.submitted .modal-submitted { display: block; }
+/* choice list */
+.choice-list{display:flex;flex-direction:column;gap:0}
+.choice{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--line);
+  cursor:none;opacity:.45;
+  transition:.3s opacity,.3s border-color;
+}
+.choice:first-child{border-top:1px solid var(--line)}
+.choice.active{opacity:1}
+.choice-swatch{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  border:1.5px solid rgba(255,255,255,.15);
+  box-shadow:0 4px 14px rgba(0,0,0,.4);
+}
+.choice-info{flex:1}
+.choice-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.choice-sub{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.choice-mark{
+  width:6px;height:6px;border-radius:50%;background:var(--pink);
+  opacity:0;transition:.3s opacity;box-shadow:0 0 8px var(--pink);
+}
+.choice.active .choice-mark{opacity:1}
 
-    /* ==============================
-       FOOTER
-    ============================== */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-    }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 24px; flex-wrap: wrap;
-    }
-    .footer-brand {
-      font-family: var(--serif); font-size: 12px; font-weight: 400;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted);
-    }
-    .footer-note {
-      font-size: 11px; color: var(--faint); max-width: 480px; line-height: 1.55;
-    }
+.config-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.dotChoice{
+  width:6px;height:6px;border-radius:50%;background:var(--line);cursor:none;
+  transition:.3s background,.3s transform;
+}
+.dotChoice.active{background:var(--pink);transform:scale(1.6);box-shadow:0 0 8px var(--pink)}
 
-    /* ==============================
-       RESPONSIVE
-    ============================== */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: 60px; }
-      .hero-media { order: -1; }
-      .arch-split { grid-template-columns: 1fr; gap: 40px; }
-      .anatomy-container { grid-template-columns: 1fr; }
-      .config-grid { grid-template-columns: 1fr; gap: 48px; }
-      .threshold-grid { grid-template-columns: 1fr 1fr; }
-      .lanes-grid { grid-template-columns: 1fr; }
-      .editorial-grid { grid-template-columns: 1fr; }
-      .cta-inner { grid-template-columns: 1fr; }
-      .container { padding: 0 20px; }
-      #hero { padding: 100px 20px 60px; }
-    }
-    @media (max-width: 600px) {
-      .threshold-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .nav-link { display: none; }
-    }
+/* ─── DEMAND TRACKER ─────────────────────────── */
+#demand{
+  border-top:1px solid var(--line);
+  background:radial-gradient(circle at 10% 0,rgba(255,79,216,.08),transparent 36%);
+}
+.status-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(82,255,156,.28);
+  background:rgba(82,255,156,.07);
+  padding:9px 16px;border-radius:999px;
+  font-size:10px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:#baffd2;
+}
+.status-badge::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 8px var(--green);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{50%{opacity:.2}}
 
-    /* ==============================
-       ZOOM OVERLAY
-    ============================== */
-    #zoomOverlay {
-      position: fixed; inset: 0; z-index: 7000;
-      background: rgba(2,2,2,0.97);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 16px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.4s var(--ease-lux);
-    }
-    #zoomOverlay.open { opacity: 1; pointer-events: all; }
-    #zoomImage { max-width: 80vw; max-height: 75vh; object-fit: contain; }
-    #zoomColor {
-      font-family: var(--serif); font-size: 16px; font-weight: 300;
-      letter-spacing: 0.15em; color: var(--muted);
-    }
-    .zoom-close {
-      position: absolute; top: 24px; right: 24px;
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border); background: transparent;
-      color: var(--muted); font-size: 20px; cursor: none;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .bodyLock { overflow: hidden; }
-  </style>
+.threshold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.threshold-card{
+  border:1px solid var(--line);background:rgba(0,0,0,.22);
+  border-radius:20px;padding:22px 18px;
+  transition:.4s border-color,.4s box-shadow;
+}
+.threshold-card.active{
+  border-color:rgba(255,209,102,.4);
+  box-shadow:0 0 32px rgba(255,209,102,.08);
+}
+.threshold-num{
+  font-family:'Playfair Display',serif;font-size:36px;font-weight:700;
+  color:var(--ink);line-height:1;margin-bottom:6px;
+}
+.threshold-card.active .threshold-num{color:var(--gold2)}
+.threshold-label{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.threshold-desc{font-size:12px;color:rgba(201,190,208,.55);margin-top:10px;line-height:1.5;border-top:1px solid var(--line);padding-top:10px}
+.threshold-card.active .threshold-desc{color:var(--muted)}
+
+.drop-meter{
+  height:10px;border-radius:999px;background:rgba(255,255,255,.06);
+  overflow:hidden;border:1px solid var(--line);margin-top:20px;
+}
+.drop-meter i{
+  display:block;height:100%;width:68%;
+  background:linear-gradient(90deg,var(--pink),var(--blue),var(--green),var(--gold));
+  box-shadow:0 0 20px rgba(51,214,255,.5);
+  animation:meter 2.8s ease-in-out infinite;
+}
+@keyframes meter{50%{width:86%}}
+
+/* ─── FINISH LANES ───────────────────────────── */
+.lanes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.lane{
+  border:1px solid var(--line);border-radius:24px;padding:32px 28px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  position:relative;overflow:hidden;
+  transition:.35s border-color,.35s transform,.35s box-shadow;
+  cursor:default;
+}
+.lane:hover{
+  transform:translateY(-8px) rotate(-0.5deg);
+  border-color:rgba(255,255,255,.28);
+}
+.lane-num{
+  font-family:'Playfair Display',serif;font-size:80px;font-weight:700;
+  color:rgba(255,255,255,.04);position:absolute;right:16px;top:10px;line-height:1;
+  transition:.35s color;
+}
+.lane:hover .lane-num{color:rgba(255,255,255,.08)}
+.lane-swatch{
+  width:52px;height:8px;border-radius:999px;margin-bottom:28px;
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+}
+.lane h3{
+  font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
+  margin-bottom:10px;position:relative;z-index:1;
+}
+.lane p{font-size:14px;color:var(--muted);line-height:1.65;position:relative;z-index:1}
+.lane-vote{display:flex;align-items:center;gap:12px;margin-top:22px}
+.vote-bar{flex:1;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.vote-fill{height:100%;width:0;border-radius:2px;transition:width 1.6s cubic-bezier(.25,.1,.1,1)}
+.vote-pct{
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:600;
+  color:var(--muted);min-width:34px;text-align:right;
+}
+.lane-shimmer{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.06) 50%,transparent 65%);
+  transform:translateX(-100%);transition:.7s transform cubic-bezier(.25,.1,.1,1);
+}
+.lane:hover .lane-shimmer{transform:translateX(100%)}
+
+/* ─── EDITORIAL GRID ─────────────────────────── */
+.editorial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.editorial-card{
+  border:1px solid var(--line);border-radius:22px;padding:36px 32px;
+  background:rgba(255,255,255,.04);
+  position:relative;overflow:hidden;
+  transition:.35s border-color;
+}
+.editorial-card:hover{border-color:rgba(255,255,255,.22)}
+.editorial-num{
+  font-family:'Playfair Display',serif;font-size:110px;font-weight:700;
+  color:rgba(255,255,255,.04);position:absolute;right:16px;top:8px;line-height:1;
+  transition:.35s color;
+}
+.editorial-card:hover .editorial-num{color:rgba(255,79,216,.08)}
+.editorial-card h3{
+  font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
+  margin-bottom:10px;position:relative;z-index:1;
+}
+.editorial-card p{font-size:14px;color:var(--muted);line-height:1.7;position:relative;z-index:1;max-width:320px}
+
+/* ─── DROP / CTA ─────────────────────────────── */
+.drop{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.drop .glass-card{padding:40px}
+.drop .glass-card h2{
+  font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);
+  font-weight:700;margin:10px 0 14px;line-height:1.05;
+}
+.drop .glass-card p{font-size:15px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+
+/* ─── MODAL ──────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:6000;
+  background:rgba(2,1,8,.88);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:.4s opacity;
+  padding:20px;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--soft);border:1px solid var(--line);border-radius:24px;
+  max-width:580px;width:100%;max-height:90vh;overflow-y:auto;
+  padding:44px;position:relative;
+  transform:translateY(28px);
+  transition:.4s transform cubic-bezier(.25,.1,.1,1);
+  box-shadow:0 60px 120px rgba(0,0,0,.6);
+}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{
+  position:absolute;top:18px;right:18px;
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line);background:transparent;
+  color:var(--muted);font-size:18px;cursor:none;
+  display:flex;align-items:center;justify-content:center;
+  transition:.25s;
+}
+.modal-close:hover{border-color:var(--pink);color:var(--ink)}
+.modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px}
+.modal-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;margin-bottom:10px;line-height:1.05;letter-spacing:-.02em}
+.modal-sub{font-size:14px;color:var(--muted);margin-bottom:28px}
+.modal-preview{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(0,0,0,.25);border:1px solid var(--line);
+  border-radius:16px;padding:14px;margin-bottom:24px;
+}
+.modal-preview img{width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+.modal-preview b{display:block;font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.modal-preview span{font-size:11px;color:var(--muted)}
+.luxury-invite{
+  font-size:12px;color:var(--muted);border-left:2px solid rgba(255,209,102,.4);
+  padding-left:14px;margin-bottom:24px;line-height:1.6;
+}
+.form-grid{display:grid;gap:16px}
+.field{display:grid;gap:7px}
+label{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{
+  width:100%;border:1px solid var(--line);background:rgba(0,0,0,.35);
+  color:var(--ink);border-radius:14px;padding:13px 15px;
+  font-size:14px;font-family:inherit;outline:none;
+  transition:.3s border-color;
+}
+input:focus,select:focus,textarea:focus{border-color:rgba(255,79,216,.5)}
+input::placeholder{color:rgba(201,190,208,.35)}
+textarea{resize:vertical}
+.fine{font-size:11px;color:rgba(201,190,208,.4);line-height:1.5;margin-top:4px}
+.modal-submitted{display:none;text-align:center;padding:48px 0}
+.modal-submitted h3{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;margin-bottom:10px}
+.modal-submitted p{font-size:14px;color:var(--muted)}
+.modal-box.submitted .modal-form-content{display:none}
+.modal-box.submitted .modal-submitted{display:block}
+
+/* ─── ZOOM ───────────────────────────────────── */
+#zoomOverlay{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(2,1,8,.96);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  opacity:0;pointer-events:none;
+  transition:.35s opacity;
+}
+#zoomOverlay.open{opacity:1;pointer-events:all}
+#zoomImage{max-width:80vw;max-height:75vh;object-fit:contain;filter:drop-shadow(0 40px 60px rgba(0,0,0,.8))}
+#zoomColor{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.zoom-close{
+  position:absolute;top:24px;right:24px;width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--line);background:transparent;color:var(--muted);
+  font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;
+  transition:.25s;
+}
+.zoom-close:hover{border-color:var(--pink);color:var(--ink)}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer{
+  border-top:1px solid var(--line);padding:40px 0;
+  position:relative;z-index:5;
+}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.footer-brand{
+  font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.footer-note{font-size:11px;color:rgba(201,190,208,.35);max-width:500px;line-height:1.55}
+
+/* ─── MAGNETIC ────────────────────────────────── */
+.magnetic{transition:.22s transform ease}
+
+/* ─── REVEAL (intersection observer fallback) ─── */
+.reveal{opacity:0;transform:translateY(32px);transition:.9s opacity cubic-bezier(.25,.1,.1,1),.9s transform cubic-bezier(.25,.1,.1,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media(max-width:900px){
+  nav{padding:12px 20px}
+  .hero-grid{grid-template-columns:1fr;gap:48px;padding-top:40px}
+  .hero-stage-wrap{order:-1;max-width:360px;margin:0 auto}
+  .spec-grid{grid-template-columns:1fr}
+  .config-wrap{grid-template-columns:1fr}
+  .threshold-grid{grid-template-columns:1fr 1fr}
+  .lanes-grid{grid-template-columns:1fr}
+  .editorial-grid{grid-template-columns:1fr}
+  .drop{grid-template-columns:1fr}
+  .shell{padding:0 16px}
+  #hero{padding:80px 0 60px}
+}
+@media(max-width:600px){
+  .threshold-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .nav-links .pill:not(.primary){display:none}
+}
+.bodyLock{overflow:hidden}
+</style>
 </head>
 <body>
 
-  <div class="noise"></div>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
+<div class="noise"></div>
+<canvas id="particles"></canvas>
+<div id="spotlight"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
 
-  <!-- LOADER -->
-  <div id="loader">
-    <div class="l-mark">
-      <span>A</span><span>t</span><span>e</span><span>l</span><span>i</span><span>e</span><span>r</span>
-    </div>
-    <div class="l-title">
-      <span>R</span><span>o</span><span>y</span><span>a</span><span>l</span>&nbsp;<span>P</span><span>o</span><span>p</span>
-    </div>
-    <div class="l-bar"><i id="loaderBar"></i></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-bg"></div>
+  <div class="l-eyebrow" id="lEyebrow">Atelier</div>
+  <div class="l-title" id="lTitle">Royal Pop</div>
+  <div class="l-bar"><i id="lBar"></i></div>
+</div>
+
+<!-- ZOOM -->
+<div id="zoomOverlay" aria-hidden="true">
+  <button class="zoom-close" id="zoomClose">×</button>
+  <img id="zoomImage" src="" alt="" />
+  <span id="zoomColor"></span>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">Royal Pop Mods</div>
+  <div class="nav-links">
+    <a href="#configurator" class="pill">Configure</a>
+    <a href="#demand" class="pill">Demand</a>
+    <a href="#" class="pill primary magnetic" data-open-modal>First Circle</a>
   </div>
+</nav>
 
-  <!-- ZOOM OVERLAY -->
-  <div id="zoomOverlay" aria-hidden="true">
-    <button class="zoom-close" id="zoomClose" aria-label="Close zoom">×</button>
-    <img id="zoomImage" src="" alt="Bracelet render enlarged" />
-    <span id="zoomColor"></span>
-  </div>
+<!-- HERO -->
+<section id="hero">
+  <!-- orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
 
-  <!-- NAV -->
-  <nav id="mainNav">
-    <div class="nav-brand">Royal Pop Mods</div>
-    <div class="nav-right">
-      <a href="#configurator" class="nav-link">Configure</a>
-      <a href="#demand" class="nav-link">Demand</a>
-      <a href="#" class="nav-cta magnetic" data-open-modal>First Circle</a>
-    </div>
-  </nav>
+  <div class="shell">
+    <div class="hero-grid">
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner container">
-      <div class="hero-content">
-        <div class="hero-eyebrow reveal">Early Access · Color-First Drop</div>
-        <h1 class="hero-headline">
-          <span class="reveal reveal-delay-1">Built around</span><br>
-          <span class="reveal reveal-delay-2">the bracelet.</span><br>
-          <em class="reveal reveal-delay-3">First.</em>
+      <!-- copy -->
+      <div class="hero-copy">
+        <div class="hero-eyebrow" id="hEyebrow">Early Access &nbsp;·&nbsp; Color-First Drop</div>
+        <h1 class="hero-h1" id="hTitle">
+          Built around<br>
+          <span class="grad-text">the bracelet.</span><br>
+          <em>First.</em>
         </h1>
-        <p class="hero-sub reveal reveal-delay-2">
-          A no-logo integrated bracelet concept with the luxury sport architecture collectors recognize — wide brushed links, raised connectors, polished bevels, real wrist presence. Color follows structure.
+        <p class="hero-sub" id="hSub">
+          A no-logo integrated bracelet concept with the luxury sport architecture people recognize — wide brushed links, raised connectors, polished bevels, real wrist presence. Color follows structure.
         </p>
-        <div class="hero-actions reveal reveal-delay-3">
-          <a href="#configurator" class="btn-primary magnetic">Configure Yours</a>
-          <a href="#demand" class="btn-ghost magnetic">View Demand Status</a>
+        <div class="hero-cta" id="hCta">
+          <a href="#configurator" class="btn btn-main magnetic">Configure Yours</a>
+          <a href="#demand" class="btn btn-ghost magnetic">View Demand</a>
         </div>
-        <div class="hero-countdown reveal reveal-delay-3">
-          <div class="cd-unit"><b id="d">07</b><span>Days</span></div>
+        <div class="countdown" id="hCountdown">
+          <div class="timebox"><b id="d">07</b><span>Days</span></div>
           <div class="cd-sep">:</div>
-          <div class="cd-unit"><b id="h">18</b><span>Hrs</span></div>
+          <div class="timebox"><b id="h">18</b><span>Hrs</span></div>
           <div class="cd-sep">:</div>
-          <div class="cd-unit"><b id="m">44</b><span>Min</span></div>
+          <div class="timebox"><b id="m">44</b><span>Min</span></div>
           <div class="cd-sep">:</div>
-          <div class="cd-unit"><b id="s">09</b><span>Sec</span></div>
+          <div class="timebox"><b id="s">09</b><span>Sec</span></div>
         </div>
-      </div>
-      <div class="hero-media reveal reveal-delay-1">
-        <div class="hero-render-wrap">
-          <div class="hero-render-glow"></div>
-          <img id="heroRender" src="/renders/bracelet-architecture-steel.png" alt="Royal Pop Bracelet — Brushed Steel" />
-          <div class="hero-render-shimmer"></div>
+        <div class="hero-stats" id="hStats">
+          <div class="stat"><b>No Logos</b><span>Clean aftermarket</span></div>
+          <div class="stat"><b>Concept</b><span>Demand gated</span></div>
+          <div class="stat"><b>Limited</b><span>First circle</span></div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- TICKER -->
-  <div class="ticker-wrap">
-    <div class="ticker-track">
-      <span class="ticker-item">Brushed Steel Architecture</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Black Ceramic Direction</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">No Rubber — No Logos</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Wide Link Structure</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Demand-Gated Drop</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">End-Link Precision Fit</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">First Circle Access</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Pop Composite Colorways</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Brushed Steel Architecture</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Black Ceramic Direction</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">No Rubber — No Logos</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Wide Link Structure</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Demand-Gated Drop</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">End-Link Precision Fit</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">First Circle Access</span><span class="ticker-dot">·</span>
-      <span class="ticker-item">Pop Composite Colorways</span><span class="ticker-dot">·</span>
+      <!-- stage -->
+      <div class="hero-stage-wrap" id="heroStage">
+        <div class="stage">
+          <div class="stage-halo"></div>
+          <div class="stage-halo-inner"></div>
+          <div class="stage-mask"></div>
+          <div class="stage-rail">
+            <span class="stage-pill">No-Logo</span>
+            <span class="stage-pill">First Batch</span>
+          </div>
+          <img class="stage-img" id="heroRender" src="/renders/bracelet-architecture-steel.png" alt="Royal Pop Bracelet" />
+          <div class="stage-label">
+            <span id="heroColorLabel">Brushed Steel Architecture</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <div class="gold-rule"></div>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Brushed Steel Architecture</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Black Ceramic Direction</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">No Rubber · No Logos</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Wide Link Structure</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Demand-Gated Drop</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">End-Link Precision Fit</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">First Circle Access</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Pop Composite Colorways</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Brushed Steel Architecture</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Black Ceramic Direction</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">No Rubber · No Logos</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Wide Link Structure</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Demand-Gated Drop</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">End-Link Precision Fit</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">First Circle Access</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Pop Composite Colorways</span><span class="ticker-sep">·</span>
+  </div>
+</div>
 
-  <!-- ARCHITECTURE -->
-  <section class="section" id="architecture">
-    <div class="container">
-      <div class="section-label reveal">01 — Architecture</div>
-      <div class="arch-split">
-        <div class="arch-left">
-          <h2 class="reveal">Designed to feel<br><em>engineered,</em><br>not accessorized.</h2>
-        </div>
-        <div class="arch-right reveal reveal-delay-1">
-          <p>The visual promise is simple: a bracelet that looks like it belongs on the watch. Solid, tapered, architectural, and premium from the first glance. No aftermarket gap. No cheap end-link. No compromise on the structure that makes the whole piece.</p>
-          <div class="spec-list">
-            <div class="spec-item">
-              <span>Wide Brushed Main Links</span>
-              <i>Primary Structure</i>
-            </div>
-            <div class="spec-item">
-              <span>Raised Connector Blocks</span>
-              <i>AP Heritage Geometry</i>
-            </div>
-            <div class="spec-item">
-              <span>Polished Beveled Edges</span>
-              <i>Finishing Grade</i>
-            </div>
-            <div class="spec-item">
-              <span>Tight Shadow Gaps</span>
-              <i>Bracelet Density</i>
-            </div>
-            <div class="spec-item">
-              <span>Tapered Wrist Flow</span>
-              <i>Integrated Profile</i>
-            </div>
-            <div class="spec-item">
-              <span>End-Link Precision Fit</span>
-              <i>Zero Gap Policy</i>
-            </div>
-          </div>
-        </div>
+<div class="lux-rule" id="rule1"></div>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">01 — Architecture</div>
+        <h2 class="section-h2">Designed to feel<br><em>engineered.</em></h2>
       </div>
+      <p class="section-lead">The visual promise is simple: a bracelet that looks like it belongs on the watch — solid, tapered, architectural, and premium from the first glance.</p>
     </div>
-  </section>
-
-  <div class="gold-rule"></div>
-
-  <!-- ANATOMY -->
-  <section class="section section-border-top" id="anatomy">
-    <div class="container">
-      <div class="section-label reveal">02 — The Detail</div>
-      <div class="anatomy-container">
-        <div class="anatomy-image reveal">
-          <img src="/renders/luxury-wrist-lifestyle.png" alt="Bracelet architecture detail" id="anatomyImg" />
-        </div>
-        <div class="anatomy-steps reveal reveal-delay-1">
-          <div class="anatomy-step active" data-step="0">
-            <div class="step-n">Detail 01</div>
-            <h3>Wide Main Links</h3>
-            <p>Flat, substantial link faces define the bracelet's visual weight. This is what separates a serious integrated bracelet from an accessory.</p>
-          </div>
-          <div class="anatomy-step" data-step="1">
-            <div class="step-n">Detail 02</div>
-            <h3>Raised Connectors</h3>
-            <p>Elevated center connector links echo the octagonal case architecture. The depth creates shadow lines that read as intentional engineering.</p>
-          </div>
-          <div class="anatomy-step" data-step="2">
-            <div class="step-n">Detail 03</div>
-            <h3>Polished Bevels</h3>
-            <p>Alternating brushed and polished surfaces on each link. The contrast is what gives an integrated bracelet its three-dimensional presence.</p>
-          </div>
-          <div class="anatomy-step" data-step="3">
-            <div class="step-n">Detail 04</div>
-            <h3>Precision End-Link</h3>
-            <p>The end-link is the product. It either fits — flush, gapless, architectural — or it doesn't belong. This is where most aftermarket bracelets fail.</p>
-          </div>
-        </div>
-      </div>
+    <div class="spec-grid">
+      <div class="glass-card reveal"><div class="spec-num">01</div><div class="spec-title">Wide Brushed Main Links</div><div class="spec-desc">Flat, substantial link faces define the bracelet's visual weight and premium character. This is what separates a serious integrated bracelet from an accessory.</div></div>
+      <div class="glass-card reveal"><div class="spec-num">02</div><div class="spec-title">Raised Connector Blocks</div><div class="spec-desc">Elevated center connectors echo the octagonal case architecture. Depth creates shadow lines that read as intentional engineering — not mass market stamping.</div></div>
+      <div class="glass-card reveal"><div class="spec-num">03</div><div class="spec-title">Polished Bevel Edges</div><div class="spec-desc">Alternating brushed and polished surfaces on each link. The contrast is what gives an integrated bracelet its three-dimensional wrist presence.</div></div>
+      <div class="glass-card reveal"><div class="spec-num">04</div><div class="spec-title">End-Link Precision Fit</div><div class="spec-desc">No gappy aftermarket look. Fitment intelligence drives the CAD path. If it doesn't sit flush, we don't prototype it. The end-link is the product.</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="gold-rule"></div>
+<div class="lux-rule" id="rule2"></div>
 
-  <!-- CONFIGURATOR -->
-  <section class="section" id="configurator">
-    <div class="container">
-      <div class="section-label reveal">03 — Configure</div>
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:32px; flex-wrap:wrap; margin-bottom:0;">
-        <h2 class="section-title reveal">Select your<br><em>finish lane.</em></h2>
-        <p class="section-lead reveal reveal-delay-1">The bracelet architecture stays consistent across every colorway. Pick the finish direction that speaks to how you wear it.</p>
+<!-- CONFIGURATOR -->
+<section id="configurator">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">02 — Configure</div>
+        <h2 class="section-h2">Select your<br><em>finish lane.</em></h2>
       </div>
-      <div class="config-grid">
-        <!-- Stage -->
-        <div class="config-stage reveal">
-          <div class="config-stage-bg" id="stageBg"></div>
-          <div class="config-stage-overlay"></div>
-          <img id="mainProductRender" src="/renders/bracelet-architecture-steel.png" alt="Selected colorway" />
-          <div class="config-nav">
-            <button class="config-nav-btn" id="prevColor" aria-label="Previous colorway">&#8592;</button>
-            <button class="config-nav-btn" id="nextColor" aria-label="Next colorway">&#8594;</button>
-          </div>
-          <div class="config-stage-label">
-            <span id="viewerColorName">Brushed Steel Architecture</span>
-          </div>
-        </div>
-        <!-- Controls -->
-        <div class="config-controls reveal reveal-delay-1">
-          <div class="config-finish-list">
-            <div class="choice active magnetic" data-name="Brushed Steel Architecture" data-img="/renders/bracelet-architecture-steel.png" data-bg="rgba(196,192,184,0.03)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#e8e4da,#9e9a90)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Brushed Steel Architecture</div>
-                <div class="choice-sub">Classic weight · Polished bevels</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-            <div class="choice magnetic" data-name="Black Ceramic Architecture" data-img="/renders/bracelet-architecture-black-ceramic.png" data-bg="rgba(10,10,18,0.08)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#2a2a38,#060608)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Black Ceramic Architecture</div>
-                <div class="choice-sub">Stealth premium · Dark composite</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-            <div class="choice magnetic" data-name="Pop Color Architecture" data-img="/renders/bracelet-architecture-pop-color.png" data-bg="rgba(82,255,156,0.02)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#52ff9c,#33d6ff)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Pop Color Architecture</div>
-                <div class="choice-sub">Collector energy · Bold composite</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-            <div class="choice magnetic" data-name="Royal Pop — Black / White" data-img="/renders/royal-pop-black-white.png" data-bg="rgba(255,255,255,0.01)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#fff,#222)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Royal Pop — Black / White</div>
-                <div class="choice-sub">Monochrome · High contrast</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-            <div class="choice magnetic" data-name="Royal Pop — Blue / White" data-img="/renders/royal-pop-blue-white.png" data-bg="rgba(51,214,255,0.02)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#83ecff,#0060c0)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Royal Pop — Blue / White</div>
-                <div class="choice-sub">Sport luxury · Clean colorway</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-            <div class="choice magnetic" data-name="Royal Pop — Pop Mix" data-img="/renders/royal-pop-popmix.png" data-bg="rgba(255,79,216,0.02)">
-              <div class="choice-swatch" style="background:linear-gradient(145deg,#ff4fd8,#ffd166,#52ff9c)"></div>
-              <div class="choice-info">
-                <div class="choice-name">Royal Pop — Pop Mix</div>
-                <div class="choice-sub">Maximum energy · Collector piece</div>
-              </div>
-              <div class="choice-active-mark"></div>
-            </div>
-          </div>
-
-          <div class="config-dots" id="colorDots">
-            <div class="dotChoice active" data-index="0"></div>
-            <div class="dotChoice" data-index="1"></div>
-            <div class="dotChoice" data-index="2"></div>
-            <div class="dotChoice" data-index="3"></div>
-            <div class="dotChoice" data-index="4"></div>
-            <div class="dotChoice" data-index="5"></div>
-          </div>
-
-          <a href="#" class="btn-primary magnetic" data-open-modal style="align-self:flex-start;">
-            Reserve This Configuration
-          </a>
-        </div>
-      </div>
+      <p class="section-lead">The bracelet architecture stays consistent. Choose the finish direction that speaks to how you wear it.</p>
     </div>
-  </section>
 
-  <div class="gold-rule"></div>
-
-  <!-- DEMAND TRACKER -->
-  <section class="section" id="demand">
-    <div class="container">
-      <div class="demand-header reveal">
-        <div>
-          <div class="section-label">04 — Demand Signal</div>
-          <h2 class="section-title">Demand decides<br><em>what gets built.</em></h2>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;padding-top:8px;">
-          <div class="demand-status-badge">Signal Active</div>
-          <p class="section-lead" style="text-align:right;max-width:340px;font-size:14px;">No preorder is active yet. This is the first-circle list and finish vote.</p>
+    <div class="config-wrap">
+      <!-- viewer -->
+      <div class="viewer reveal" id="viewerStage">
+        <div class="viewer-halo"></div>
+        <div class="viewer-mask"></div>
+        <img id="mainProductRender" src="/renders/bracelet-architecture-steel.png" alt="Selected colorway" />
+        <div class="viewer-nav">
+          <button class="vnav-btn" id="prevColor">&#8592;</button>
+          <span id="viewerColorName">Brushed Steel Architecture</span>
+          <button class="vnav-btn" id="nextColor">&#8594;</button>
         </div>
       </div>
-      <div class="threshold-grid reveal reveal-delay-1">
-        <div class="threshold-card active">
-          <div class="threshold-num">100</div>
-          <div class="threshold-label">Email Signups</div>
-          <div class="threshold-desc">Real signal. Finish vote data + demand confirmation.</div>
-        </div>
-        <div class="threshold-card">
-          <div class="threshold-num">250</div>
-          <div class="threshold-label">Strong Signal</div>
-          <div class="threshold-desc">Refundable reservations open. First-circle pricing locked.</div>
-        </div>
-        <div class="threshold-card">
-          <div class="threshold-num">20</div>
-          <div class="threshold-label">Reservations</div>
-          <div class="threshold-desc">Sample unlock. CAD path and tooling begins.</div>
-        </div>
-        <div class="threshold-card">
-          <div class="threshold-num">$1K</div>
-          <div class="threshold-label">In Deposits</div>
-          <div class="threshold-desc">Full prototype path confirmed. Production timeline set.</div>
-        </div>
-      </div>
-      <p class="demand-note reveal reveal-delay-2">No preorder is active yet. This is the first-circle list and finish vote. If demand shows up, we open refundable reservations next.</p>
-    </div>
-  </section>
 
-  <div class="gold-rule"></div>
-
-  <!-- FINISH LANES -->
-  <section class="section section-border-top">
-    <div class="container">
-      <div class="section-label reveal">05 — Finish Lanes</div>
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:32px; flex-wrap:wrap;">
-        <h2 class="section-title reveal">Three directions.<br><em>One bracelet language.</em></h2>
-        <p class="section-lead reveal reveal-delay-1">The early vote is no longer just color. It's which premium finish lane deserves the first sample path.</p>
-      </div>
-      <div class="lanes-grid">
-        <div class="lane-card reveal">
-          <div class="lane-shimmer"></div>
-          <div class="lane-num">01</div>
-          <div class="lane-swatch-bar" style="background:linear-gradient(90deg,#e8e4da,#9e9a90)"></div>
-          <h3>Brushed Steel</h3>
-          <p>Classic weight. Brushed faces. Polished bevels. The cleanest luxury signal — every serious integrated bracelet starts here.</p>
-          <div class="lane-vote">
-            <div class="lane-vote-bar"><div class="lane-vote-fill" data-vote="38"></div></div>
-            <div class="lane-vote-pct">38%</div>
+      <!-- controls -->
+      <div class="reveal">
+        <div class="choice-list">
+          <div class="choice active magnetic" data-name="Brushed Steel Architecture" data-img="/renders/bracelet-architecture-steel.png" data-hue="rgba(200,196,188,.08)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#e8e4da,#9e9a90)"></div>
+            <div class="choice-info"><div class="choice-name">Brushed Steel Architecture</div><div class="choice-sub">Classic weight · Polished bevels</div></div>
+            <div class="choice-mark"></div>
+          </div>
+          <div class="choice magnetic" data-name="Black Ceramic Architecture" data-img="/renders/bracelet-architecture-black-ceramic.png" data-hue="rgba(20,18,36,.15)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#2a2a38,#060608)"></div>
+            <div class="choice-info"><div class="choice-name">Black Ceramic Architecture</div><div class="choice-sub">Stealth premium · Dark composite</div></div>
+            <div class="choice-mark"></div>
+          </div>
+          <div class="choice magnetic" data-name="Pop Color Architecture" data-img="/renders/bracelet-architecture-pop-color.png" data-hue="rgba(82,255,156,.05)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#52ff9c,#33d6ff)"></div>
+            <div class="choice-info"><div class="choice-name">Pop Color Architecture</div><div class="choice-sub">Collector energy · Bold composite</div></div>
+            <div class="choice-mark"></div>
+          </div>
+          <div class="choice magnetic" data-name="Royal Pop — Black / White" data-img="/renders/royal-pop-black-white.png" data-hue="rgba(255,255,255,.02)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#fff,#222)"></div>
+            <div class="choice-info"><div class="choice-name">Royal Pop — Black / White</div><div class="choice-sub">Monochrome · High contrast</div></div>
+            <div class="choice-mark"></div>
+          </div>
+          <div class="choice magnetic" data-name="Royal Pop — Blue / White" data-img="/renders/royal-pop-blue-white.png" data-hue="rgba(51,214,255,.05)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#83ecff,#0060c0)"></div>
+            <div class="choice-info"><div class="choice-name">Royal Pop — Blue / White</div><div class="choice-sub">Sport luxury · Clean colorway</div></div>
+            <div class="choice-mark"></div>
+          </div>
+          <div class="choice magnetic" data-name="Royal Pop — Pop Mix" data-img="/renders/royal-pop-popmix.png" data-hue="rgba(255,79,216,.05)">
+            <div class="choice-swatch" style="background:linear-gradient(145deg,#ff4fd8,#ffd166,#52ff9c)"></div>
+            <div class="choice-info"><div class="choice-name">Royal Pop — Pop Mix</div><div class="choice-sub">Maximum energy · Collector piece</div></div>
+            <div class="choice-mark"></div>
           </div>
         </div>
-        <div class="lane-card reveal reveal-delay-1">
-          <div class="lane-shimmer"></div>
-          <div class="lane-num">02</div>
-          <div class="lane-swatch-bar" style="background:linear-gradient(90deg,#2a2a38,#000)"></div>
-          <h3>Black Ceramic</h3>
-          <p>Glossy dark composite direction. Sharp edge highlights. Stealth premium profile. The bracelet that disappears into the case.</p>
-          <div class="lane-vote">
-            <div class="lane-vote-bar"><div class="lane-vote-fill" data-vote="27"></div></div>
-            <div class="lane-vote-pct">27%</div>
-          </div>
+        <div class="config-dots" id="configDots">
+          <div class="dotChoice active" data-index="0"></div>
+          <div class="dotChoice" data-index="1"></div>
+          <div class="dotChoice" data-index="2"></div>
+          <div class="dotChoice" data-index="3"></div>
+          <div class="dotChoice" data-index="4"></div>
+          <div class="dotChoice" data-index="5"></div>
         </div>
-        <div class="lane-card reveal reveal-delay-2">
-          <div class="lane-shimmer"></div>
-          <div class="lane-num">03</div>
-          <div class="lane-swatch-bar" style="background:linear-gradient(90deg,#52ff9c,#33d6ff,#ff4fd8)"></div>
-          <h3>Pop Composite</h3>
-          <p>Same link architecture translated into bold collector color. The bracelet that makes the whole watch about the wrist.</p>
-          <div class="lane-vote">
-            <div class="lane-vote-bar"><div class="lane-vote-fill" data-vote="35"></div></div>
-            <div class="lane-vote-pct">35%</div>
-          </div>
+        <div style="margin-top:28px">
+          <a href="#" class="btn btn-main magnetic" data-open-modal>Reserve This Configuration</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gold-rule"></div>
-
-  <!-- PRODUCT STORY -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label reveal">06 — Product Story</div>
-      <h2 class="section-title reveal">The architecture<br><em>decides the value.</em></h2>
-      <div class="editorial-grid" style="margin-top:64px;">
-        <div class="editorial-card reveal">
-          <div class="editorial-num">01</div>
-          <h3>The Architecture</h3>
-          <p>Wide flat links, raised connectors, tight shadow gaps, and taper that reads like a serious integrated bracelet — not an aftermarket strap pretending to be one.</p>
-        </div>
-        <div class="editorial-card reveal reveal-delay-1">
-          <div class="editorial-num">02</div>
-          <h3>The Finish</h3>
-          <p>Brushed steel, glossy ceramic-look, or bold color composite — all using the same premium link structure. The bracelet language stays consistent across every lane.</p>
-        </div>
-        <div class="editorial-card reveal reveal-delay-1">
-          <div class="editorial-num">03</div>
-          <h3>The Fit</h3>
-          <p>The end-link is the product. No gappy aftermarket look. Fitment intelligence drives the CAD path — if it doesn't sit flush, we don't prototype it.</p>
-        </div>
-        <div class="editorial-card reveal reveal-delay-2">
-          <div class="editorial-num">04</div>
-          <h3>The Drop</h3>
-          <p>Demand decides what gets sampled first. First circle gets early updates before production opens. No fake scarcity. Real signal. Real manufacturing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gold-rule"></div>
-
-  <!-- CTA -->
-  <section class="section" id="cta">
-    <div class="container">
-      <div class="cta-inner">
-        <div class="cta-card reveal">
-          <div class="eyebrow-sm">Launch Weapon</div>
-          <h2>$5 Hype Watch<br>Launch Checklist</h2>
-          <p>Before the drop: launch-day setup, scam checks, flip math, resale exit plan, and accessory measurement guide.</p>
-          <a href="#" class="btn-primary magnetic" data-open-modal>Get Checklist Access</a>
-        </div>
-        <div class="cta-card reveal reveal-delay-1">
-          <div class="eyebrow-sm">First Circle</div>
-          <h2>Bracelet<br>Early Access</h2>
-          <p>First list for renders, sample updates, preorder windows, and first-batch pricing — before the public launch opens.</p>
-          <a href="#" class="btn-ghost magnetic" data-open-modal>Reserve Your Position</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODAL -->
-  <div class="modal-overlay" id="reserveModal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-      <div class="modal-form-content">
-        <div class="modal-eyebrow">First Circle Access</div>
-        <h2 class="modal-title">Enter the<br>first circle.</h2>
-        <p class="modal-sub">Your reservation helps decide the first sample run. The strongest finish lane becomes the first CAD path.</p>
-        <div class="modal-preview">
-          <img id="modalRender" src="/renders/bracelet-architecture-steel.png" alt="Selected colorway" />
-          <div>
-            <b id="modalColor">Brushed Steel Architecture</b>
-            <span>Your reservation signals which direction gets built first.</span>
-          </div>
-        </div>
-        <div class="modal-notice">
-          This is not a preorder yet. It is an invitation list and demand signal before CAD and sample spend begins.
-        </div>
-        <form name="early-access" method="POST" class="form-grid" id="earlyAccessForm">
-          <input type="hidden" name="form-name" value="early-access" />
-          <div class="form-field">
-            <label>Name</label>
-            <input name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-field">
-            <label>Email or Phone</label>
-            <input name="contact" placeholder="Email or phone" required />
-          </div>
-          <div class="form-field">
-            <label>Which finish lane would you preorder?</label>
-            <select name="style" required>
-              <option value="">Select one</option>
-              <option>Brushed Steel Architecture</option>
-              <option>Black Ceramic Architecture</option>
-              <option>Pop Color Architecture</option>
-              <option>Official Colorway Match</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label>Comfortable preorder price?</label>
-            <select name="price" required>
-              <option value="">Select one</option>
-              <option>$79–$99</option>
-              <option>$100–$149</option>
-              <option>$150–$199</option>
-              <option>$200+</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label>Notes (optional)</label>
-            <textarea name="notes" rows="3" placeholder="The detail, finish, or style cue that would make you buy immediately."></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="justify-self:start;cursor:none;">Join First Circle</button>
-          <p class="form-fine">Independent aftermarket accessory concept. Not affiliated with, endorsed by, or sponsored by Audemars Piguet, Swatch, or related brands.</p>
-        </form>
-      </div>
-      <div class="modal-submitted">
-        <h3>You're in the circle.</h3>
-        <p>We'll reach out with sample updates and first-circle preorder windows before the public launch.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">Royal Pop Mods</div>
-        <p class="footer-note">Independent concept launch. Final fitment, materials, pricing, and availability depend on sample testing and production validation. Not affiliated with Audemars Piguet or Swatch Group.</p>
+<div class="lux-rule" id="rule3"></div>
+
+<!-- DEMAND TRACKER -->
+<section id="demand">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">03 — Demand Signal</div>
+        <h2 class="section-h2">Demand decides<br><em>what gets built.</em></h2>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px">
+        <div class="status-badge">Signal Active</div>
+        <p class="section-lead" style="text-align:right;font-size:14px;max-width:320px">No preorder is active yet. This is the first-circle list and finish vote.</p>
       </div>
     </div>
-  </footer>
+    <div class="threshold-grid reveal">
+      <div class="threshold-card active">
+        <div class="threshold-num">100</div>
+        <div class="threshold-label">Email Signups</div>
+        <div class="threshold-desc">Real signal. Finish vote data + demand confirmation.</div>
+      </div>
+      <div class="threshold-card">
+        <div class="threshold-num">250</div>
+        <div class="threshold-label">Strong Signal</div>
+        <div class="threshold-desc">Refundable reservations open. First-circle pricing locked.</div>
+      </div>
+      <div class="threshold-card">
+        <div class="threshold-num">20</div>
+        <div class="threshold-label">Reservations</div>
+        <div class="threshold-desc">Sample unlock. CAD path and tooling begins.</div>
+      </div>
+      <div class="threshold-card">
+        <div class="threshold-num">$1K</div>
+        <div class="threshold-label">In Deposits</div>
+        <div class="threshold-desc">Full prototype path confirmed. Production timeline set.</div>
+      </div>
+    </div>
+    <div class="drop-meter reveal" style="margin-top:32px"><i></i></div>
+  </div>
+</section>
 
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <!-- Lenis smooth scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<div class="lux-rule" id="rule4"></div>
 
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
+<!-- FINISH LANES -->
+<section>
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">04 — Finish Lanes</div>
+        <h2 class="section-h2">Three directions.<br><em>One language.</em></h2>
+      </div>
+      <p class="section-lead">The early vote is no longer just color — it's which premium finish lane deserves the first sample path.</p>
+    </div>
+    <div class="lanes-grid">
+      <div class="lane reveal">
+        <div class="lane-shimmer"></div>
+        <div class="lane-num">01</div>
+        <div class="lane-swatch" style="background:linear-gradient(90deg,#e8e4da,#9e9a90)"></div>
+        <h3>Brushed Steel</h3>
+        <p>Classic weight. Brushed faces. Polished bevels. The cleanest luxury signal — every serious integrated bracelet starts here.</p>
+        <div class="lane-vote">
+          <div class="vote-bar"><div class="vote-fill" data-vote="38" style="background:linear-gradient(90deg,#e8e4da,#9e9a90)"></div></div>
+          <div class="vote-pct">38%</div>
+        </div>
+      </div>
+      <div class="lane reveal">
+        <div class="lane-shimmer"></div>
+        <div class="lane-num">02</div>
+        <div class="lane-swatch" style="background:linear-gradient(90deg,#2a2a38,#000)"></div>
+        <h3>Black Ceramic</h3>
+        <p>Glossy dark composite direction. Sharp edge highlights. Stealth premium profile. The bracelet that disappears into the case.</p>
+        <div class="lane-vote">
+          <div class="vote-bar"><div class="vote-fill" data-vote="27" style="background:linear-gradient(90deg,#33d6ff,#8a5cff)"></div></div>
+          <div class="vote-pct">27%</div>
+        </div>
+      </div>
+      <div class="lane reveal">
+        <div class="lane-shimmer"></div>
+        <div class="lane-num">03</div>
+        <div class="lane-swatch" style="background:linear-gradient(90deg,#52ff9c,#33d6ff,#ff4fd8)"></div>
+        <h3>Pop Composite</h3>
+        <p>Same link architecture translated into bold collector color. The bracelet that makes the whole watch about the wrist.</p>
+        <div class="lane-vote">
+          <div class="vote-bar"><div class="vote-fill" data-vote="35" style="background:linear-gradient(90deg,var(--pink),var(--blue),var(--green))"></div></div>
+          <div class="vote-pct">35%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* ============================
-       LENIS SMOOTH SCROLL
-    ============================ */
-    const lenis = new Lenis({
-      duration: 1.4,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true
+<div class="lux-rule" id="rule5"></div>
+
+<!-- STORY -->
+<section>
+  <div class="shell">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-kicker">05 — Product Story</div>
+        <h2 class="section-h2">The architecture<br><em>decides the value.</em></h2>
+      </div>
+      <p class="section-lead">Color creates attention. Structure creates desire. The bracelet has to feel intentional, engineered, and worthy before any finish gets layered on.</p>
+    </div>
+    <div class="editorial-grid">
+      <div class="editorial-card reveal"><div class="editorial-num">01</div><h3>The Architecture</h3><p>Wide flat links, raised connectors, tight shadow gaps, and taper that reads like a serious integrated bracelet — not an aftermarket strap pretending to be one.</p></div>
+      <div class="editorial-card reveal"><div class="editorial-num">02</div><h3>The Finish</h3><p>Brushed steel, glossy ceramic-look, or bold color composite — all using the same premium link structure. The bracelet language stays consistent across every lane.</p></div>
+      <div class="editorial-card reveal"><div class="editorial-num">03</div><h3>The Fit</h3><p>The end-link is the product. No gappy aftermarket look. Fitment intelligence drives the CAD path — if it doesn't sit flush, we don't prototype it.</p></div>
+      <div class="editorial-card reveal"><div class="editorial-num">04</div><h3>The Drop</h3><p>Demand decides what gets sampled first. First circle gets early updates before production opens. No fake scarcity. Real signal. Real manufacturing.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="lux-rule" id="rule6"></div>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="shell">
+    <div class="drop reveal">
+      <div class="glass-card">
+        <div class="section-kicker">Launch Weapon</div>
+        <h2>$5 Hype Watch<br>Launch Checklist</h2>
+        <p>Before the drop: launch-day setup, scam checks, flip math, resale exit plan, and accessory measurement guide.</p>
+        <a href="#" class="btn btn-main magnetic" data-open-modal>Get Checklist Access</a>
+      </div>
+      <div class="glass-card">
+        <div class="section-kicker">The Bigger Play</div>
+        <h2>Bracelet<br>Early Access</h2>
+        <p>First list for renders, sample updates, preorder windows, and first-batch pricing — before the public launch opens.</p>
+        <a href="#" class="btn btn-ghost magnetic" data-open-modal>Reserve Your Position</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="reserveModal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-form-content">
+      <div class="modal-eyebrow">First Circle Access</div>
+      <h2 class="modal-title">Enter the<br>first circle.</h2>
+      <p class="modal-sub">Your reservation helps decide the first sample run. The strongest finish lane becomes the first CAD path.</p>
+      <div class="modal-preview">
+        <img id="modalRender" src="/renders/bracelet-architecture-steel.png" alt="Selected colorway" />
+        <div><b id="modalColor">Brushed Steel Architecture</b><span>Your reservation signals which direction gets built first.</span></div>
+      </div>
+      <div class="luxury-invite">This is not a preorder yet. It is an invitation list and demand signal before CAD and sample spend begins.</div>
+      <form name="early-access" method="POST" class="form-grid" id="earlyAccessForm">
+        <input type="hidden" name="form-name" value="early-access" />
+        <div class="field"><label>Name</label><input name="name" placeholder="Your name" required /></div>
+        <div class="field"><label>Email or Phone</label><input name="contact" placeholder="Email or phone" required /></div>
+        <div class="field">
+          <label>Which finish lane would you preorder?</label>
+          <select name="style" required>
+            <option value="">Select one</option>
+            <option>Brushed Steel Architecture</option>
+            <option>Black Ceramic Architecture</option>
+            <option>Pop Color Architecture</option>
+            <option>Official Colorway Match</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Comfortable preorder price?</label>
+          <select name="price" required>
+            <option value="">Select one</option>
+            <option>$79–$99</option>
+            <option>$100–$149</option>
+            <option>$150–$199</option>
+            <option>$200+</option>
+          </select>
+        </div>
+        <div class="field"><label>Notes (optional)</label><textarea name="notes" rows="3" placeholder="The detail, finish, or style cue that would make you buy immediately."></textarea></div>
+        <button type="submit" class="btn btn-main" style="cursor:none;justify-self:start">Join First Circle</button>
+        <p class="fine">Independent aftermarket accessory concept. Not affiliated with Audemars Piguet, Swatch, or related brands.</p>
+      </form>
+    </div>
+    <div class="modal-submitted">
+      <h3>You're in the circle.</h3>
+      <p>We'll reach out with sample updates and first-circle preorder windows before the public launch.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="shell">
+    <div class="footer-inner">
+      <div class="footer-brand">Royal Pop Mods</div>
+      <p class="footer-note">Independent concept launch. Final fitment, materials, pricing, and availability depend on sample testing and production validation. Not affiliated with Audemars Piguet or Swatch Group.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+/* ─── INIT ───────────────────────────────────── */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─── PARTICLES ──────────────────────────────── */
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  const colors = ['#ff4fd8','#33d6ff','#52ff9c','#ffd166','#ff8a2a','#8a5cff'];
+  let W, H, particles = [];
+
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+
+  for(let i=0;i<55;i++){
+    particles.push({
+      x: rand(0,window.innerWidth),
+      y: rand(0,window.innerHeight),
+      r: rand(1,2.5),
+      vx: rand(-.3,.3),
+      vy: rand(-.4,-.1),
+      color: colors[Math.floor(Math.random()*colors.length)],
+      alpha: rand(.15,.45)
     });
-    function lenisRaf(time) {
-      lenis.raf(time);
-      ScrollTrigger.update();
-      requestAnimationFrame(lenisRaf);
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.y < -4){ p.y = H+4; p.x = rand(0,W); }
+      if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ─── CURSOR ─────────────────────────────────── */
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+
+window.addEventListener('pointermove', e=>{
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+  document.getElementById('spotlight').style.left = mx+'px';
+  document.getElementById('spotlight').style.top  = my+'px';
+});
+(function animRing(){
+  rx += (mx-rx)*.1; ry += (my-ry)*.1;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+document.querySelectorAll('a,button,.choice,.lane,.glass-card,.editorial-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+
+/* ─── LOADER ─────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', function(){
+  const lEye = document.getElementById('lEyebrow');
+  const lTit = document.getElementById('lTitle');
+  const lBar = document.getElementById('lBar');
+
+  // Eyebrow in
+  gsap.to(lEye,{opacity:1,y:0,duration:.7,ease:'power3.out',delay:.3});
+  // Title in
+  gsap.to(lTit,{opacity:1,y:0,duration:.9,ease:'power3.out',delay:.55});
+  // Bar fill
+  gsap.to(lBar,{width:'100%',duration:1.4,ease:'power2.inOut',delay:.4});
+
+  // Loader out
+  gsap.to('#loader',{
+    opacity:0,duration:.6,ease:'power2.inOut',delay:2.1,
+    onComplete:()=>{
+      document.getElementById('loader').style.display='none';
+      revealHero();
     }
-    requestAnimationFrame(lenisRaf);
+  });
+});
 
-    /* ============================
-       CUSTOM CURSOR
-    ============================ */
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorRing = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-    window.addEventListener('pointermove', e => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursorDot.style.left = mouseX + 'px';
-      cursorDot.style.top = mouseY + 'px';
-    });
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateRing);
+/* ─── HERO REVEAL ────────────────────────────── */
+function revealHero(){
+  const tl = gsap.timeline();
+  tl.to('#hEyebrow',{opacity:1,y:0,duration:.8,ease:'power3.out'})
+    .to('#hTitle',{opacity:1,y:0,duration:1,ease:'power3.out'},'-=.5')
+    .to('#hSub',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.6')
+    .to('#hCta',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.5')
+    .to('#hCountdown',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.4')
+    .to('#hStats',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.3')
+    .to('#heroStage',{opacity:1,scale:1,duration:1.1,ease:'power3.out'},'-=1.0');
+
+  // Hero render float
+  gsap.to('#heroRender',{
+    y:-18,duration:5.5,ease:'sine.inOut',repeat:-1,yoyo:true,delay:1.2
+  });
+  // Hero parallax
+  gsap.to('.hero-stage-wrap',{
+    yPercent:-12,ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1.2}
+  });
+}
+
+/* ─── SCROLL REVEALS ─────────────────────────── */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      gsap.to(e.target,{opacity:1,y:0,duration:.85,ease:'power3.out'});
+      observer.unobserve(e.target);
     }
-    animateRing();
+  });
+},{threshold:.14});
+revealEls.forEach(el=>{ if(!el.closest('#hero')) observer.observe(el); });
 
-    /* ============================
-       LOADER
-    ============================ */
-    (function runLoader() {
-      const markSpans = document.querySelectorAll('.l-mark span');
-      const titleSpans = document.querySelectorAll('.l-title span');
-      const bar = document.getElementById('loaderBar');
+/* ─── LUX RULES ANIMATE ──────────────────────── */
+document.querySelectorAll('.lux-rule').forEach(r=>{
+  ScrollTrigger.create({
+    trigger:r,start:'top 90%',
+    onEnter:()=>gsap.to(r,{opacity:.65,scaleX:1,duration:1.2,ease:'power3.out',transformOrigin:'left center'})
+  });
+});
 
-      // Animate bar
-      gsap.to(bar, { width: '100%', duration: 1.6, ease: 'power2.inOut' });
+/* ─── VOTE BARS ──────────────────────────────── */
+document.querySelectorAll('.vote-fill').forEach(fill=>{
+  ScrollTrigger.create({
+    trigger:fill,start:'top 92%',
+    onEnter:()=>gsap.to(fill,{width:fill.dataset.vote+'%',duration:1.6,ease:'power3.out',delay:.2})
+  });
+});
 
-      // Stagger mark
-      gsap.to(markSpans, {
-        y: 0, opacity: 1, stagger: 0.05, duration: 0.6, ease: 'power3.out', delay: 0.2
-      });
-      // Stagger title
-      gsap.to(titleSpans, {
-        y: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: 'power3.out', delay: 0.6
-      });
+/* ─── NAV SCROLL ─────────────────────────────── */
+ScrollTrigger.create({
+  start:'top -60',
+  onUpdate:self=>document.getElementById('mainNav').classList.toggle('scrolled',self.progress>0)
+});
 
-      // Exit loader
-      gsap.to('#loader', {
-        opacity: 0, duration: 0.6, ease: 'power2.inOut', delay: 2.0,
-        onComplete: () => {
-          document.getElementById('loader').style.display = 'none';
-          revealHero();
-        }
-      });
-    })();
+/* ─── CONFIGURATOR ───────────────────────────── */
+const choices = Array.from(document.querySelectorAll('.choice'));
+const dots    = Array.from(document.querySelectorAll('.dotChoice'));
+const render  = document.getElementById('mainProductRender');
+const cName   = document.getElementById('viewerColorName');
+const mRender = document.getElementById('modalRender');
+const mColor  = document.getElementById('modalColor');
+const zImg    = document.getElementById('zoomImage');
+const zClr    = document.getElementById('zoomColor');
+const hRender = document.getElementById('heroRender');
+const hLabel  = document.getElementById('heroColorLabel');
+let activeIdx = 0;
 
-    /* ============================
-       HERO REVEAL
-    ============================ */
-    function revealHero() {
-      // Hero content reveals
-      gsap.utils.toArray('#hero .reveal').forEach((el, i) => {
-        gsap.to(el, {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-          delay: i * 0.12
-        });
-      });
-      // Hero render
-      gsap.fromTo('#heroRender',
-        { opacity: 0, y: 40, scale: 0.96 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.4, ease: 'power3.out', delay: 0.3 }
-      );
-      // Subtle float
-      gsap.to('#heroRender', {
-        y: -18, duration: 5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.5
-      });
-    }
+function setColorway(i){
+  activeIdx = (i+choices.length)%choices.length;
+  choices.forEach(c=>c.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  choices[activeIdx].classList.add('active');
+  if(dots[activeIdx]) dots[activeIdx].classList.add('active');
 
-    /* ============================
-       SCROLL REVEALS
-    ============================ */
-    document.querySelectorAll('.reveal').forEach(el => {
-      // Skip hero reveals — handled by revealHero
-      if (el.closest('#hero')) return;
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%',
-        onEnter: () => {
-          const delay = el.classList.contains('reveal-delay-3') ? 0.3 :
-                        el.classList.contains('reveal-delay-2') ? 0.2 :
-                        el.classList.contains('reveal-delay-1') ? 0.1 : 0;
-          gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay });
-        }
-      });
-    });
+  const c = choices[activeIdx];
+  const img = c.dataset.img, name = c.dataset.name;
 
-    /* ============================
-       NAV SCROLL BEHAVIOR
-    ============================ */
-    ScrollTrigger.create({
-      start: 'top -80',
-      onUpdate: self => {
-        document.getElementById('mainNav').classList.toggle('scrolled', self.progress > 0);
-      }
-    });
+  // Cinematic crossfade
+  gsap.to(render,{opacity:0,scale:.93,duration:.25,onComplete:()=>{
+    render.src = img;
+    cName.textContent = name;
+    mRender.src = img; mColor.textContent = name;
+    zImg.src = img; zClr.textContent = name;
+    gsap.to(render,{opacity:1,scale:1,duration:.5,ease:'power2.out'});
+  }});
+  // Sync hero render
+  gsap.to(hRender,{opacity:0,duration:.2,onComplete:()=>{
+    hRender.src = img;
+    hLabel.textContent = name;
+    gsap.to(hRender,{opacity:1,duration:.4});
+  }});
+}
 
-    /* ============================
-       ANATOMY STEP CYCLE
-    ============================ */
-    const anatomySteps = document.querySelectorAll('.anatomy-step');
-    const anatomyImgs = [
-      '/renders/luxury-wrist-lifestyle.png',
-      '/renders/luxury-link-detail.png',
-      '/renders/luxury-clasp-detail.png',
-      '/renders/bracelet-architecture-steel.png'
-    ];
-    anatomySteps.forEach((step, i) => {
-      step.addEventListener('click', () => {
-        anatomySteps.forEach(s => s.classList.remove('active'));
-        step.classList.add('active');
-        const img = document.getElementById('anatomyImg');
-        gsap.to(img, {
-          opacity: 0, duration: 0.3, onComplete: () => {
-            img.src = anatomyImgs[i] || anatomyImgs[0];
-            gsap.to(img, { opacity: 1, duration: 0.5 });
-          }
-        });
-      });
-    });
+choices.forEach((c,i)=>c.addEventListener('click',()=>setColorway(i)));
+dots.forEach(d=>d.addEventListener('click',()=>setColorway(Number(d.dataset.index))));
+document.getElementById('prevColor').addEventListener('click',()=>setColorway(activeIdx-1));
+document.getElementById('nextColor').addEventListener('click',()=>setColorway(activeIdx+1));
 
-    // Auto-cycle anatomy
-    let anatIdx = 0;
-    setInterval(() => {
-      anatIdx = (anatIdx + 1) % anatomySteps.length;
-      anatomySteps.forEach(s => s.classList.remove('active'));
-      anatomySteps[anatIdx].classList.add('active');
-      const img = document.getElementById('anatomyImg');
-      gsap.to(img, {
-        opacity: 0, duration: 0.3, onComplete: () => {
-          img.src = anatomyImgs[anatIdx] || anatomyImgs[0];
-          gsap.to(img, { opacity: 1, duration: 0.5 });
-        }
-      });
-    }, 4000);
+/* ─── MAGNETIC BUTTONS ───────────────────────── */
+document.querySelectorAll('.magnetic').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.transform=`translate(${(e.clientX-r.left-r.width/2)/7}px,${(e.clientY-r.top-r.height/2)/7}px)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.transform='');
+});
 
-    /* ============================
-       VOTE BAR ANIMATION
-    ============================ */
-    document.querySelectorAll('.lane-vote-fill').forEach(fill => {
-      ScrollTrigger.create({
-        trigger: fill, start: 'top 90%',
-        onEnter: () => gsap.to(fill, {
-          width: fill.dataset.vote + '%', duration: 1.8, ease: 'power3.out', delay: 0.2
-        })
-      });
-    });
+/* ─── ZOOM ───────────────────────────────────── */
+const zoom = document.getElementById('zoomOverlay');
+document.getElementById('heroRender').addEventListener('click',()=>{
+  zImg.src = document.getElementById('heroRender').src;
+  zClr.textContent = hLabel.textContent;
+  zoom.classList.add('open'); zoom.setAttribute('aria-hidden','false');
+  document.body.classList.add('bodyLock');
+});
+function closeZoom(){ zoom.classList.remove('open'); zoom.setAttribute('aria-hidden','true'); document.body.classList.remove('bodyLock'); }
+document.getElementById('zoomClose').addEventListener('click',closeZoom);
+zoom.addEventListener('click',e=>{ if(e.target===zoom) closeZoom(); });
 
-    /* ============================
-       CONFIGURATOR
-    ============================ */
-    const choices = Array.from(document.querySelectorAll('.choice'));
-    const dots = Array.from(document.querySelectorAll('.dotChoice'));
-    const mainRender = document.getElementById('mainProductRender');
-    const colorName = document.getElementById('viewerColorName');
-    const modalRender = document.getElementById('modalRender');
-    const modalColor = document.getElementById('modalColor');
-    const zoomImage = document.getElementById('zoomImage');
-    const zoomColor = document.getElementById('zoomColor');
-    const stageBg = document.getElementById('stageBg');
-    let activeIdx = 0;
+/* ─── MODAL ──────────────────────────────────── */
+const modal = document.getElementById('reserveModal');
+const openModal=()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('bodyLock'); setTimeout(()=>modal.querySelector('input[name="name"]').focus(),100); };
+const closeModal=()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('bodyLock'); };
+document.querySelectorAll('[data-open-modal]').forEach(el=>el.addEventListener('click',e=>{ e.preventDefault(); openModal(); }));
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+window.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeZoom(); } });
 
-    function setColorway(i) {
-      activeIdx = (i + choices.length) % choices.length;
-      choices.forEach(c => c.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
-      choices[activeIdx].classList.add('active');
-      dots[activeIdx] && dots[activeIdx].classList.add('active');
+/* ─── FORM ───────────────────────────────────── */
+document.getElementById('earlyAccessForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{ await fetch('/api/lead',{method:'POST',body:new URLSearchParams(new FormData(e.target))}); }catch(err){}
+  document.querySelector('.modal-box').classList.add('submitted');
+});
 
-      const c = choices[activeIdx];
-      const img = c.dataset.img;
-      const name = c.dataset.name;
-      const bg = c.dataset.bg || 'transparent';
+/* ─── COUNTDOWN ──────────────────────────────── */
+const target=Date.now()+7*24*60*60*1000+18*60*60*1000;
+function tick(){
+  let t=Math.max(0,target-Date.now());
+  const dv=Math.floor(t/86400000);t%=86400000;
+  const hv=Math.floor(t/3600000);t%=3600000;
+  const mv=Math.floor(t/60000);
+  const sv=Math.floor((t%60000)/1000);
+  document.getElementById('d').textContent=String(dv).padStart(2,'0');
+  document.getElementById('h').textContent=String(hv).padStart(2,'0');
+  document.getElementById('m').textContent=String(mv).padStart(2,'0');
+  document.getElementById('s').textContent=String(sv).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
 
-      // Cinematic crossfade
-      gsap.to(mainRender, {
-        opacity: 0, scale: 0.95, duration: 0.25,
-        onComplete: () => {
-          mainRender.src = img;
-          colorName.textContent = name;
-          modalRender.src = img;
-          modalColor.textContent = name;
-          zoomImage.src = img;
-          zoomColor.textContent = name;
-          gsap.to(stageBg, { background: bg, duration: 0.8, ease: 'power2.out' });
-          gsap.to(mainRender, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
-        }
-      });
-    }
+/* ─── CARD ENTRANCE STAGGER ──────────────────── */
+['.spec-grid .glass-card','.lanes-grid .lane','.editorial-grid .editorial-card','.threshold-card'].forEach(sel=>{
+  const els = document.querySelectorAll(sel);
+  ScrollTrigger.create({
+    trigger:els[0],start:'top 85%',
+    onEnter:()=>gsap.fromTo(els,
+      {opacity:0,y:36},
+      {opacity:1,y:0,duration:.8,stagger:.1,ease:'power3.out'}
+    )
+  });
+});
 
-    choices.forEach((c, i) => c.addEventListener('click', () => setColorway(i)));
-    dots.forEach(d => d.addEventListener('click', () => setColorway(Number(d.dataset.index))));
-    document.getElementById('prevColor').addEventListener('click', () => setColorway(activeIdx - 1));
-    document.getElementById('nextColor').addEventListener('click', () => setColorway(activeIdx + 1));
-
-    /* ============================
-       MAGNETIC BUTTONS
-    ============================ */
-    document.querySelectorAll('.magnetic').forEach(el => {
-      el.addEventListener('mousemove', e => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) / 6;
-        const y = (e.clientY - r.top - r.height / 2) / 6;
-        el.style.transform = `translate(${x}px, ${y}px)`;
-      });
-      el.addEventListener('mouseleave', () => el.style.transform = '');
-    });
-
-    /* ============================
-       ZOOM
-    ============================ */
-    const zoomOverlay = document.getElementById('zoomOverlay');
-    const heroRender = document.getElementById('heroRender');
-    heroRender.style.cursor = 'none';
-    heroRender.addEventListener('click', () => {
-      zoomImage.src = heroRender.src;
-      zoomColor.textContent = 'Bracelet Architecture';
-      zoomOverlay.classList.add('open');
-      zoomOverlay.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('bodyLock');
-    });
-    document.getElementById('zoomClose').addEventListener('click', () => {
-      zoomOverlay.classList.remove('open');
-      zoomOverlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('bodyLock');
-    });
-    zoomOverlay.addEventListener('click', e => {
-      if (e.target === zoomOverlay) {
-        zoomOverlay.classList.remove('open');
-        zoomOverlay.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('bodyLock');
-      }
-    });
-
-    /* ============================
-       MODAL
-    ============================ */
-    const modal = document.getElementById('reserveModal');
-    const openModal = () => {
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('bodyLock');
-      setTimeout(() => modal.querySelector('input[name="name"]').focus(), 100);
-    };
-    const closeModal = () => {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('bodyLock');
-    };
-    document.querySelectorAll('[data-open-modal]').forEach(el => {
-      el.addEventListener('click', e => { e.preventDefault(); openModal(); });
-    });
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    window.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        if (modal.classList.contains('open')) closeModal();
-        if (zoomOverlay.classList.contains('open')) {
-          zoomOverlay.classList.remove('open');
-          document.body.classList.remove('bodyLock');
-        }
-      }
-    });
-
-    /* ============================
-       FORM SUBMIT
-    ============================ */
-    document.getElementById('earlyAccessForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      try {
-        await fetch('/api/lead', { method: 'POST', body: new URLSearchParams(data) });
-      } catch (err) {}
-      document.querySelector('.modal-box').classList.add('submitted');
-    });
-
-    /* ============================
-       COUNTDOWN
-    ============================ */
-    const target = Date.now() + 7 * 24 * 60 * 60 * 1000 + 18 * 60 * 60 * 1000;
-    function updateCountdown() {
-      let t = Math.max(0, target - Date.now());
-      const d = Math.floor(t / 86400000); t %= 86400000;
-      const h = Math.floor(t / 3600000); t %= 3600000;
-      const m = Math.floor(t / 60000);
-      const s = Math.floor((t % 60000) / 1000);
-      document.getElementById('d').textContent = String(d).padStart(2, '0');
-      document.getElementById('h').textContent = String(h).padStart(2, '0');
-      document.getElementById('m').textContent = String(m).padStart(2, '0');
-      document.getElementById('s').textContent = String(s).padStart(2, '0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    /* ============================
-       PARALLAX — HERO RENDER
-    ============================ */
-    gsap.to('.hero-media', {
-      yPercent: -15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-
-    /* ============================
-       HORIZONTAL RULE REVEAL
-    ============================ */
-    document.querySelectorAll('.gold-rule').forEach(rule => {
-      gsap.fromTo(rule, { scaleX: 0, opacity: 0 }, {
-        scaleX: 1, opacity: 0.4, duration: 1.2, ease: 'power3.out',
-        transformOrigin: 'left center',
-        scrollTrigger: { trigger: rule, start: 'top 90%' }
-      });
-    });
-
-  </script>
-
+</script>
 </body>
 </html>

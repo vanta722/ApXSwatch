@@ -170,7 +170,7 @@
 <body>
   <div class="loader"><div class="loaderInner"><div class="loaderMark">Royal<br>Pop</div><div class="loaderLine"></div><div class="loaderSub">First circle loading</div></div></div>
   <div class="noise"></div><div class="spotlight" id="spotlight"></div>
-  <div class="zoomOverlay" id="zoomOverlay" aria-hidden="true"><div class="zoomPanel"><button class="zoomClose" type="button" aria-label="Close product zoom">×</button><div class="zoomHint">Tap outside to close</div><img id="zoomImage" src="/renders/official-pink-yellow-turquoise.png" alt="Full screen colorway rendering"><div class="zoomCaption"><div><span>Selected colorway</span><b id="zoomColor">Pink / Yellow / Turquoise</b></div><a class="btn" href="#" data-open-modal>Reserve this look</a></div></div></div>
+  <div class="zoomOverlay" id="zoomOverlay" aria-hidden="true"><div class="zoomPanel"><button class="zoomClose" type="button" aria-label="Close product zoom">×</button><div class="zoomHint">Tap outside to close</div><img id="zoomImage" src="/renders/bracelet-architecture-steel.png" alt="Full screen colorway rendering"><div class="zoomCaption"><div><span>Selected colorway</span><b id="zoomColor">Brushed Steel Architecture</b></div><a class="btn" href="#" data-open-modal>Reserve this look</a></div></div></div>
   <main class="shell">
     <nav class="nav">
       <div class="brand">Royal Pop Mods</div>
@@ -186,8 +186,8 @@
     <section class="hero">
       <div>
         <div class="eyebrow">Early access // color-first collector drop</div>
-        <h1>Turn the pop watch into a <span class="gold">wrist trophy.</span></h1>
-        <p class="sub">Bold no-logo integrated bracelet concepts for collectors who want the Royal Pop energy: candy color, luxury geometry, real wrist presence, and first-batch exclusivity.</p>
+        <h1>Built around the <span class="gold">bracelet first.</span></h1>
+        <p class="sub">A no-logo integrated bracelet concept with the luxury sport architecture people recognize: wide brushed links, raised connectors, polished bevels, and real wrist presence — colorways come after the structure.</p>
         <div class="accessDock">
           <a class="accessCard" href="#" data-open-modal>
             <div class="pulseRing"></div>
@@ -216,45 +216,42 @@
 
     <section id="interactive-preview">
       <div class="sectionHead">
-        <h2>Tap into the bracelet before it exists.</h2>
-        <p class="lead">A more realistic product preview built to feel like a live configurator — choose the colorway, see the render, and vote with your preorder interest.</p>
+        <h2>The style: solid integrated bracelet architecture.</h2>
+        <p class="lead">The product direction is structure first: flat brushed main links, raised connector links, polished edges, tight gaps, tapered wrist flow — then color-matched finishes layered on top.</p>
       </div>
       <div class="configurator">
         <div class="productViewer" id="viewer">
-          <div class="mainRender"><img id="mainProductRender" src="/renders/official-pink-yellow-turquoise.png" alt="Interactive colorway product rendering"></div>
+          <div class="carouselControls"><button class="carBtn" type="button" id="prevColor" aria-label="Previous finish">‹</button><button class="carBtn" type="button" id="nextColor" aria-label="Next finish">›</button></div>
+          <div class="mainRender"><img id="mainProductRender" src="/renders/bracelet-architecture-steel.png" alt="Interactive bracelet architecture rendering"></div>
+          <div class="colorStrip" aria-label="Finish carousel dots"><button class="dotChoice active" data-index="0" style="background:linear-gradient(135deg,#f5f5f5,#777);color:#ddd"></button><button class="dotChoice" data-index="1" style="background:linear-gradient(135deg,#111,#555);color:#222"></button><button class="dotChoice" data-index="2" style="background:linear-gradient(135deg,#ff4fd8,#ffd166,#33d6ff);color:#ff4fd8"></button><button class="dotChoice" data-index="3" style="background:linear-gradient(135deg,#092c8a,#77d7ff);color:#77d7ff"></button></div>
           <div class="hotspot one" data-label="Integrated links"></div>
           <div class="hotspot two" data-label="Ceramic-look finish"></div>
           <div class="hotspot three" data-label="No-logo design"></div>
-          <div class="viewerMeta"><span><i class="liveDot"></i>Interactive preview</span><span id="viewerColorName">Pink / Yellow / Turquoise</span></div>
+          <div class="viewerMeta"><span><i class="liveDot"></i>Interactive preview</span><span id="viewerColorName">Brushed Steel Architecture</span></div>
         </div>
         <div class="controlPanel">
           <div class="eyebrow">Colorway selector</div>
-          <h3>Pick the one that should hit first.</h3>
-          <p>This is the demand signal: the colorway people tap and reserve most becomes the first sample priority.</p>
+          <h3>Choose the finish lane.</h3>
+          <p>We’re validating which finish direction should become the first CAD/sample path. The bracelet architecture stays consistent across every colorway.</p>
           <div class="choiceGrid">
-            <button class="choice active" data-name="Pink / Yellow / Turquoise" data-img="/renders/official-pink-yellow-turquoise.png"><small>Hero Loud</small><b>Pink / Yellow / Turquoise</b></button>
-            <button class="choice" data-name="Black / White" data-img="/renders/official-black-white.png"><small>Panda Clean</small><b>Black / White</b></button>
-            <button class="choice" data-name="Blue / Light Blue" data-img="/renders/official-blue-light-blue.png"><small>Blue Pop</small><b>Blue / Light Blue</b></button>
-            <button class="choice" data-name="Green / Green" data-img="/renders/official-green-green.png"><small>Full Green</small><b>Green / Green</b></button>
-            <button class="choice" data-name="Pink / Red" data-img="/renders/official-pink-red.png"><small>Pink Heat</small><b>Pink / Red</b></button>
-            <button class="choice" data-name="Navy / Pink" data-img="/renders/official-navy-pink.png"><small>Night Pop</small><b>Navy / Pink</b></button>
-            <button class="choice" data-name="White / Multicolor" data-img="/renders/official-white-multicolor.png"><small>Clean Multi</small><b>White / Multicolor</b></button>
-            <button class="choice" data-name="Green / Blue / Yellow" data-img="/renders/official-green-blue-yellow.png"><small>Tropical</small><b>Green / Blue / Yellow</b></button>
+            <button class="choice active" data-name="Brushed Steel Architecture" data-img="/renders/bracelet-architecture-steel.png"><small>Core Style</small><b>Brushed Steel Architecture</b></button>
+            <button class="choice" data-name="Black Ceramic Architecture" data-img="/renders/bracelet-architecture-black-ceramic.png"><small>Premium Dark</small><b>Black Ceramic Architecture</b></button>
+            <button class="choice" data-name="Pop Color Architecture" data-img="/renders/bracelet-architecture-pop-color.png"><small>Color Layer</small><b>Pop Color Architecture</b></button>
+            <button class="choice" data-name="Official Colorway Match" data-img="/renders/official-blue-light-blue.png"><small>Color Match</small><b>Official Colorway Match</b></button>
           </div>
           <div class="specList">
-            <div class="spec"><span>Target feel</span><strong>Bracelet, not rubber</strong></div>
-            <div class="spec"><span>Visual finish</span><strong>Ceramic / polished pop</strong></div>
+            <div class="spec"><span>Target feel</span><strong>Solid bracelet, not strap</strong></div>
+            <div class="spec"><span>Core design</span><strong>Wide links + raised connectors</strong></div>
             <div class="spec"><span>Branding</span><strong>No-logo aftermarket</strong></div>
             <div class="spec"><span>Launch mode</span><strong>First-batch access</strong></div>
           </div>
           <div class="progressSteps"><div class="step"><b>01</b><span>Vote</span></div><div class="step"><b>02</b><span>Sample</span></div><div class="step"><b>03</b><span>Drop</span></div></div>
           <div class="voteBoard">
-            <h4>Live color vote</h4>
-            <div class="voteRow"><span>Pink / Yellow / Turquoise</span><div class="voteTrack"><i class="voteFill" data-vote="31"></i></div><strong>31%</strong></div>
-            <div class="voteRow"><span>Black / White</span><div class="voteTrack"><i class="voteFill" data-vote="22"></i></div><strong>22%</strong></div>
-            <div class="voteRow"><span>Blue / Light Blue</span><div class="voteTrack"><i class="voteFill" data-vote="18"></i></div><strong>18%</strong></div>
-            <div class="voteRow"><span>Green / Green</span><div class="voteTrack"><i class="voteFill" data-vote="14"></i></div><strong>14%</strong></div>
-            <div class="voteRow"><span>Other colorways</span><div class="voteTrack"><i class="voteFill" data-vote="15"></i></div><strong>15%</strong></div>
+            <h4>Live style vote</h4>
+            <div class="voteRow"><span>Steel Architecture</span><div class="voteTrack"><i class="voteFill" data-vote="38"></i></div><strong>38%</strong></div>
+            <div class="voteRow"><span>Black Ceramic</span><div class="voteTrack"><i class="voteFill" data-vote="27"></i></div><strong>27%</strong></div>
+            <div class="voteRow"><span>Pop Color</span><div class="voteTrack"><i class="voteFill" data-vote="21"></i></div><strong>21%</strong></div>
+            <div class="voteRow"><span>Color Match</span><div class="voteTrack"><i class="voteFill" data-vote="14"></i></div><strong>14%</strong></div>
           </div>
           <div class="cta"><a class="btn magnetic" href="#" data-open-modal>Reserve this colorway</a></div>
         </div>
@@ -267,13 +264,13 @@
 
     <section>
       <div class="sectionHead">
-        <h2>Color loud. Finish clean. Bracelet real.</h2>
-        <p class="lead">The collection should feel playful and expensive at the same time: bold colors, sharp integrated links, polished edges, and a bracelet that turns the drop into a full outfit piece.</p>
+        <h2>Luxury link structure. Then color.</h2>
+        <p class="lead">The site now leads with the actual product vision: premium integrated bracelet architecture. Wide links, raised center connectors, brushed faces, polished bevels, and a color-flexible structure that can carry any future colorway.</p>
       </div>
       <div class="grid">
-        <div class="card"><h3>Luxury sport silhouette</h3><p>Angular integrated geometry with a premium bracelet presence inspired by elite sport-watch design language.</p></div>
-        <div class="card"><h3>Clean no-logo product</h3><p>Independent aftermarket concept. No counterfeit logos, no fake branding, no messy shortcuts.</p></div>
-        <div class="card"><h3>Built from demand</h3><p>Early access signups and deposits decide the first finish, sample direction, and initial production run.</p><div class="dropMeter"><i></i></div></div>
+        <div class="card"><h3>Integrated link architecture</h3><p>Wide main links, raised connector blocks, tight shadow gaps, taper, and a real bracelet profile — not a rubber strap.</p></div>
+        <div class="card"><h3>Finish-flexible product</h3><p>The same bracelet structure can become brushed steel, black ceramic-look, or bold color-matched composite.</p></div>
+        <div class="card"><h3>Built from demand</h3><p>Votes decide the first finish lane, then CAD/sample work begins only after demand is proven.</p><div class="dropMeter"><i></i></div></div>
       </div>
     </section>
 
@@ -302,14 +299,14 @@
           </div>
           <button class="closeModal" type="button" aria-label="Close modal">×</button>
         </div>
-        <div class="modalPreview"><img id="modalRender" src="/renders/official-pink-yellow-turquoise.png" alt="Selected colorway preview"><div><b id="modalColor">Pink / Yellow / Turquoise</b><span>Your reservation helps decide the first sample run.</span></div></div>
+        <div class="modalPreview"><img id="modalRender" src="/renders/bracelet-architecture-steel.png" alt="Selected colorway preview"><div><b id="modalColor">Brushed Steel Architecture</b><span>Your reservation helps decide the first sample run.</span></div></div>
         <form name="early-access" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="early-access" />
           <div class="field"><label>Name</label><input name="name" placeholder="Your name" required /></div>
           <div class="field"><label>Email or phone</label><input name="contact" placeholder="Email or phone" required /></div>
-          <div class="field"><label>Which colorway would you preorder?</label><select name="style" required><option value="">Select one</option><option>Pink / Yellow / Turquoise</option><option>Black / White</option><option>Blue / Light Blue</option><option>Green / Green</option><option>Pink / Red</option><option>Navy / Pink</option><option>White / Multicolor</option><option>Green / Blue / Yellow</option></select></div>
+          <div class="field"><label>Which finish lane would you preorder?</label><select name="style" required><option value="">Select one</option><option>Brushed Steel Architecture</option><option>Black Ceramic Architecture</option><option>Pop Color Architecture</option><option>Official Colorway Match</option></select></div>
           <div class="field"><label>Comfortable preorder price?</label><select name="price" required><option value="">Select one</option><option>$79-$99</option><option>$100-$149</option><option>$150-$199</option><option>$200+</option></select></div>
-          <div class="field"><label>Notes</label><textarea name="notes" rows="4" placeholder="Tell us the color, finish, or detail that would make you buy immediately."></textarea></div>
+          <div class="field"><label>Notes</label><textarea name="notes" rows="4" placeholder="Tell us the bracelet detail, finish, or style cue that would make you buy immediately."></textarea></div>
           <button class="btn" type="submit">Join early access</button>
           <p class="fine">Independent aftermarket accessory concept. Not affiliated with, endorsed by, or sponsored by Audemars Piguet, Swatch, or related brands. Names, if referenced elsewhere, are used only for compatibility context.</p>
         </form>

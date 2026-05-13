@@ -93,11 +93,27 @@
     .big{padding:34px}.big p{font-size:18px;color:var(--muted)}
     form{display:grid;gap:12px}.field{display:grid;gap:7px}label{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}input,select,textarea{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.38);color:var(--ink);border-radius:16px;padding:15px;font-size:16px;outline:none}textarea{resize:vertical}.fine{font-size:12px;color:#81796d;line-height:1.45}
     footer{margin-top:70px;color:#756e62;font-size:12px;border-top:1px solid var(--line);padding-top:24px}
+
+    .noise{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+    .spotlight{position:fixed;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),rgba(255,79,216,.10) 32%,transparent 68%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);filter:blur(12px);opacity:.75}
+    .ticker{position:relative;z-index:4;margin:0 -20px 28px;border-block:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.045);backdrop-filter:blur(16px)}
+    .tickerTrack{display:flex;width:max-content;animation:marquee 22s linear infinite}.ticker span{padding:12px 22px;color:var(--gold2);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}@keyframes marquee{to{transform:translateX(-50%)}}
+    .orb{position:absolute;border-radius:50%;filter:blur(18px);opacity:.55;animation:pulse 4s ease-in-out infinite}.orb.one{width:90px;height:90px;background:var(--pink);top:12%;left:8%}.orb.two{width:120px;height:120px;background:var(--blue);right:9%;top:18%;animation-delay:1s}.orb.three{width:80px;height:80px;background:var(--green);bottom:12%;left:18%;animation-delay:2s}@keyframes pulse{50%{transform:scale(1.25);opacity:.85}}
+    .screws{position:absolute;inset:23%;z-index:3;pointer-events:none}.screws i{position:absolute;width:12px;height:12px;border-radius:50%;background:linear-gradient(145deg,#fff,#7d7b74);box-shadow:0 0 0 2px rgba(0,0,0,.35),inset 0 1px 2px #fff}.screws i:nth-child(1){top:0;left:50%}.screws i:nth-child(2){top:18%;right:6%}.screws i:nth-child(3){top:50%;right:0}.screws i:nth-child(4){bottom:18%;right:6%}.screws i:nth-child(5){bottom:0;left:50%}.screws i:nth-child(6){bottom:18%;left:6%}.screws i:nth-child(7){top:50%;left:0}.screws i:nth-child(8){top:18%;left:6%}
+    .colorBar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.swatch{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.42);box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 0 0 5px rgba(255,255,255,.10);cursor:pointer;transition:.22s transform,.22s box-shadow}.swatch:hover,.swatch.active{transform:translateY(-4px) scale(1.08);box-shadow:0 0 0 4px rgba(255,255,255,.12),0 14px 40px var(--glow)}
+    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0 0;max-width:560px}.timebox{border:1px solid var(--line);background:rgba(0,0,0,.28);border-radius:18px;padding:13px;text-align:center}.timebox b{display:block;font-size:28px;line-height:1;color:#fff}.timebox span{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+    .glassRail{position:absolute;z-index:3;top:18px;right:18px;left:18px;display:flex;justify-content:space-between;gap:10px}.glassRail span{border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);backdrop-filter:blur(12px);border-radius:999px;padding:9px 12px;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.14em}
+    .luxLine{height:1px;background:linear-gradient(90deg,transparent,var(--pink),var(--blue),var(--gold),var(--green),transparent);margin:50px 0;box-shadow:0 0 24px rgba(255,79,216,.45)}
+    .finish{transition:.28s transform,.28s border-color,.28s box-shadow;cursor:pointer}.finish:hover{transform:translateY(-8px) rotate(-1deg);border-color:rgba(255,255,255,.35);box-shadow:0 26px 90px rgba(255,79,216,.18),0 0 50px rgba(51,214,255,.12)}
+    .dropMeter{height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid var(--line);margin-top:18px}.dropMeter i{display:block;height:100%;width:68%;background:linear-gradient(90deg,var(--pink),var(--blue),var(--green),var(--gold));box-shadow:0 0 22px rgba(51,214,255,.55);animation:meter 2.6s ease-in-out infinite}@keyframes meter{50%{width:84%}}
+    .magnetic{transition:transform .2s ease}
+
     @media(max-width:900px){.hero,.drop{grid-template-columns:1fr}.stage{min-height:520px}.grid,.showcase{grid-template-columns:1fr 1fr}.sectionHead{display:block}.lead{margin-top:14px}.stats{grid-template-columns:1fr}}
     @media(max-width:560px){.showcase,.grid{grid-template-columns:1fr}.nav{align-items:flex-start}.navlinks{justify-content:flex-end}.stage{min-height:430px;border-radius:28px}.label{display:block}.shell{padding-left:16px;padding-right:16px}}
   </style>
 </head>
 <body>
+  <div class="noise"></div><div class="spotlight" id="spotlight"></div>
   <main class="shell">
     <nav class="nav">
       <div class="brand">Royal Pop Mods</div>
@@ -108,15 +124,25 @@
       </div>
     </nav>
 
+    <div class="ticker"><div class="tickerTrack"><span>Royal Pop Energy</span><span>Color-First Bracelet Mods</span><span>No Rubber</span><span>First Batch Access</span><span>Luxury Sport Geometry</span><span>Royal Pop Energy</span><span>Color-First Bracelet Mods</span><span>No Rubber</span><span>First Batch Access</span><span>Luxury Sport Geometry</span></div></div>
+
     <section class="hero">
       <div>
         <div class="eyebrow">Early access // color-first collector drop</div>
         <h1>Turn the pop watch into a <span class="gold">wrist trophy.</span></h1>
         <p class="sub">Bold no-logo integrated bracelet concepts for collectors who want the Royal Pop energy: candy color, luxury geometry, real wrist presence, and first-batch exclusivity.</p>
         <div class="cta">
-          <a class="btn" href="#reserve">Get Early Access</a>
-          <a class="btn dark" href="#finishes">Preview the Finishes</a>
+          <a class="btn magnetic" href="#reserve">Get Early Access</a>
+          <a class="btn dark magnetic" href="#finishes">Preview the Finishes</a>
         </div>
+        <div class="colorBar" aria-label="Interactive color preview">
+          <button class="swatch active" data-a="#ff8bed" data-b="#33d6ff" data-glow="rgba(255,79,216,.55)" style="background:linear-gradient(135deg,#ff8bed,#33d6ff);--glow:rgba(255,79,216,.55)" title="Royal Pop Mix"></button>
+          <button class="swatch" data-a="#ff4fd8" data-b="#b70084" data-glow="rgba(255,79,216,.55)" style="background:linear-gradient(135deg,#ff8bed,#b70084);--glow:rgba(255,79,216,.55)" title="Pop Pink"></button>
+          <button class="swatch" data-a="#83ecff" data-b="#006ee6" data-glow="rgba(51,214,255,.55)" style="background:linear-gradient(135deg,#83ecff,#006ee6);--glow:rgba(51,214,255,.55)" title="Electric Blue"></button>
+          <button class="swatch" data-a="#8bffbd" data-b="#00a85b" data-glow="rgba(82,255,156,.55)" style="background:linear-gradient(135deg,#8bffbd,#00a85b);--glow:rgba(82,255,156,.55)" title="Acid Green"></button>
+          <button class="swatch" data-a="#ffc05f" data-b="#ff4d00" data-glow="rgba(255,138,42,.55)" style="background:linear-gradient(135deg,#ffc05f,#ff4d00);--glow:rgba(255,138,42,.55)" title="Solar Orange"></button>
+        </div>
+        <div class="countdown" aria-label="Launch countdown preview"><div class="timebox"><b id="d">07</b><span>Days</span></div><div class="timebox"><b id="h">18</b><span>Hours</span></div><div class="timebox"><b id="m">44</b><span>Min</span></div><div class="timebox"><b id="s">09</b><span>Sec</span></div></div>
         <div class="stats">
           <div class="stat"><b>8 Colors</b><span>Pop palette</span></div>
           <div class="stat"><b>No Logos</b><span>Clean aftermarket</span></div>
@@ -124,15 +150,20 @@
         </div>
       </div>
       <div class="stage" aria-label="cinematic product concept render">
-        <div class="watch">
+        <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
+        <div class="glassRail"><span>Interactive color preview</span><span>First circle only</span></div>
+        <div class="watch" id="watch">
           <div class="braceletTop"></div>
           <div class="case"></div>
           <div class="dial">POP<br/>MOD</div>
+          <div class="screws"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="braceletBottom"></div>
         </div>
         <div class="label"><span>Integrated bracelet concept</span><span>CAD renders coming soon</span></div>
       </div>
     </section>
+
+    <div class="luxLine"></div>
 
     <section>
       <div class="sectionHead">
@@ -142,7 +173,7 @@
       <div class="grid">
         <div class="card"><h3>Luxury sport silhouette</h3><p>Angular integrated geometry with a premium bracelet presence inspired by elite sport-watch design language.</p></div>
         <div class="card"><h3>Clean no-logo product</h3><p>Independent aftermarket concept. No counterfeit logos, no fake branding, no messy shortcuts.</p></div>
-        <div class="card"><h3>Built from demand</h3><p>Early access signups and deposits decide the first finish, sample direction, and initial production run.</p></div>
+        <div class="card"><h3>Built from demand</h3><p>Early access signups and deposits decide the first finish, sample direction, and initial production run.</p><div class="dropMeter"><i></i></div></div>
       </div>
     </section>
 
@@ -199,5 +230,24 @@
       Royal Pop Mods is an independent concept launch. Final fitment, materials, pricing, and availability depend on sample testing and production validation.
     </footer>
   </main>
+
+  <script>
+    const spot = document.getElementById('spotlight');
+    window.addEventListener('pointermove', e => { spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px'; });
+    const root = document.documentElement;
+    document.querySelectorAll('.swatch').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.swatch').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const a = btn.dataset.a, b = btn.dataset.b;
+        document.querySelector('.case').style.background = `linear-gradient(145deg,#fff,${a} 26%,${b} 58%,#ffd166 82%)`;
+        document.querySelectorAll('.braceletTop,.braceletBottom').forEach(el => el.style.background = `repeating-linear-gradient(180deg,#fff 0 14px,${a} 14px 26px,${b} 26px 38px,#ffd166 38px 50px)`);
+      });
+    });
+    const target = Date.now() + 7*24*60*60*1000 + 18*60*60*1000;
+    setInterval(()=>{let t=Math.max(0,target-Date.now());let d=Math.floor(t/86400000);t%=86400000;let h=Math.floor(t/3600000);t%=3600000;let m=Math.floor(t/60000);let sec=Math.floor((t%60000)/1000);['d','h','m','s'].forEach((id,i)=>{document.getElementById(id).textContent=[d,h,m,sec][i].toString().padStart(2,'0')})},1000);
+    document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});
+  </script>
+
 </body>
 </html>

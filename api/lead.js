@@ -1,31 +1,51 @@
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ ok: false, error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const chunks = [];
-    for await (const chunk of req) chunks.push(chunk);
-    const raw = Buffer.concat(chunks).toString('utf8');
-    const params = new URLSearchParams(raw);
-    const lead = Object.fromEntries(params.entries());
+    // Parse body — handles both URLSearchParams and JSON
+    let body = req.body;
+    if (typeof body === 'string') {
+      const params = new URLSearchParams(body);
+      body = Object.fromEntries(params.entries());
+    }
 
-    const enriched = {
-      ...lead,
-      capturedAt: new Date().toISOString(),
-      source: 'ap-x-swatch-site',
-      userAgent: req.headers['user-agent'] || null,
-      ipHint: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || null
-    };
+    const { name, contact, style, price, notes } = body;
 
-    // Vercel captures console logs in deployment logs. This is the no-database MVP.
-    // Later, route this to Airtable, Google Sheets, Supabase, Stripe, or email.
-    console.log('LEAD_CAPTURE', JSON.stringify(enriched));
+    if (!contact) {
+      return res.status(400).json({ error: 'Contact is required' });
+    }
 
-    return res.status(200).json({ ok: true });
-  } catch (error) {
-    console.error('LEAD_CAPTURE_ERROR', error);
-    return res.status(500).json({ ok: false, error: 'Capture failed' });
+    const { error } = await supabase.from('leads').insert({
+      name:        name     || null,
+      contact:     contact,
+      finish_lane: style    || null,
+      price_range: price    || null,
+      notes:       notes    || null,
+      source:      'ap-x-swatch-site',
+      referrer:    req.headers['referer'] || null,
+      user_agent:  req.headers['user-agent'] || null,
+      ip_hint:     (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim(),
+      metadata:    {}
+    });
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return res.status(500).json({ error: 'Failed to save lead' });
+    }
+
+    return res.status(200).json({ success: true });
+
+  } catch (err) {
+    console.error('Lead handler error:', err);
+    return res.status(500).json({ error: 'Server error' });
   }
 }
